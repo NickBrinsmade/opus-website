@@ -1,0 +1,561 @@
+<!doctype html>
+<!--
+  Opus · Merge artists  (served at /merge-artists/)
+
+  People pick artists rows that are one person, name the merged artist and
+  pick its picture. Submitting only records a row in artist_merge_requests
+  (opus-backend: datasets/artist_merge_requests.sql); nothing in the app
+  changes until datasets/apply_artist_merges.py applies it.
+
+  Static page: talks to Supabase with the publishable key, same as the app.
+  Search and artist details are public RPCs (search_artists_for_merge,
+  artist_merge_details); submitting needs an Opus account. Portraits come
+  from the artists' current pictures and their Wikidata P18 images,
+  fetched in the browser from wikidata.org.
+
+  Live:  https://nickbrinsmade.github.io/opus-website/merge-artists/
+         (GitHub Pages from this repo's main branch: a push deploys it)
+  Local: python3 -m http.server 8790 --directory opus-website
+         then open http://localhost:8790/merge-artists/
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merge artists · Opus</title>
+<meta name="description" content="Tell Opus which artist entries are the same person.">
+<link rel="icon" href="data:,">
+<style>
+:root { --bg:#F6F5F2; --surface:#FFFFFF; --ink:#1B1B1A; --ink2:#5D5C58; --ink3:#8D8B85; --line:#E3E1DB;
+        --match:#1F7A4D; --match-bg:#E6F2EC; --no:#B4533F; --no-bg:#F6E8E4; --accent:#2F5DA8; --accent-bg:#E8EEF8;
+        --warn:#9A6A12; --warn-bg:#F7EEDB; --mono:#D9D5CC; color-scheme: light; }
+@media (prefers-color-scheme: dark) { :root { --bg:#141413; --surface:#1E1E1C; --ink:#EDEBE5; --ink2:#AAA79F; --ink3:#7C7A74;
+        --line:#33322F; --match:#5CC690; --match-bg:#1B2E24; --no:#E08A75; --no-bg:#33201B; --accent:#7FA6E8; --accent-bg:#1C2738;
+        --warn:#E0B45C; --warn-bg:#2E2614; --mono:#3A3834; color-scheme: dark; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+header { position:sticky; top:0; z-index:3; background:var(--bg); border-bottom:1px solid var(--line); padding:12px 20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.brand { font-weight:800; letter-spacing:.02em; font-size:16px; }
+.brand span { color:var(--ink3); font-weight:600; }
+.who { margin-left:auto; color:var(--ink2); font-size:13px; display:flex; gap:10px; align-items:center; }
+main { padding:20px; max-width:1240px; margin:0 auto; }
+.intro { color:var(--ink2); max-width:760px; margin:0 0 18px; }
+.layout { display:grid; grid-template-columns:minmax(300px, 400px) 1fr; gap:20px; align-items:start; }
+.panel { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px; }
+.sticky { position:sticky; top:72px; }
+h2 { font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink3); margin:0 0 10px; }
+h2 .n { color:var(--ink); }
+.step + .step { margin-top:22px; padding-top:18px; border-top:1px solid var(--line); }
+.hint { color:var(--ink3); font-size:13px; margin:4px 0 0; }
+input[type=text], input[type=email], input[type=password], input[type=search], textarea {
+  font:inherit; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink); width:100%; }
+textarea { resize:vertical; min-height:60px; }
+input:focus-visible, textarea:focus-visible, .btn:focus-visible, .pick input:focus-visible + .tile, a:focus-visible {
+  outline:2px solid var(--accent); outline-offset:2px; }
+.btn { border:1px solid var(--line); background:var(--surface); color:var(--ink); padding:8px 14px; border-radius:8px; cursor:pointer; font:inherit; font-weight:600; white-space:nowrap; }
+.btn.small { padding:4px 10px; font-size:12px; }
+.btn.primary { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+.btn.link { border:0; background:none; padding:0; color:var(--accent); font-weight:600; }
+.btn:disabled { opacity:.45; cursor:default; }
+.results { margin-top:10px; max-height:calc(100vh - 230px); overflow:auto; }
+.row { display:grid; grid-template-columns:40px 1fr auto; gap:10px; align-items:center; padding:8px 0; border-bottom:1px solid var(--line); }
+.row:last-child { border-bottom:0; }
+.av { width:40px; height:40px; border-radius:50%; object-fit:cover; background:var(--mono); display:grid; place-items:center; font-weight:700; font-size:13px; color:var(--ink2); overflow:hidden; }
+.av.lg { width:56px; height:56px; font-size:17px; }
+.t { font-weight:600; overflow-wrap:anywhere; }
+.m { color:var(--ink2); font-size:12.5px; overflow-wrap:anywhere; }
+.chip { display:inline-block; font-size:11.5px; padding:1px 7px; border-radius:999px; border:1px solid var(--line); color:var(--ink2); text-decoration:none; }
+a.chip:hover { border-color:var(--accent); color:var(--accent); }
+.chip.cand { border-style:dashed; }
+.empty { color:var(--ink3); padding:14px 0; }
+.cards { display:grid; gap:12px; }
+.card { border:1px solid var(--line); border-radius:10px; padding:12px; display:grid; grid-template-columns:56px 1fr auto; gap:12px; }
+.card .more { grid-column:2 / 4; }
+.works { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+.work { width:88px; }
+.work img, .work .ph { width:88px; height:72px; object-fit:cover; border-radius:6px; background:var(--bg); display:grid; place-items:center; color:var(--ink3); font-size:18px; }
+.work .cap { font-size:11px; color:var(--ink2); margin-top:3px; line-height:1.25; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.variants { margin-top:6px; }
+.note { border-radius:8px; padding:9px 11px; font-size:13px; margin-top:10px; }
+.note.warn { background:var(--warn-bg); color:var(--warn); }
+.note.bad { background:var(--no-bg); color:var(--no); }
+.note.ok { background:var(--match-bg); color:var(--match); }
+.note.info { background:var(--accent-bg); color:var(--accent); }
+.pics { display:grid; grid-template-columns:repeat(auto-fill, minmax(132px, 1fr)); gap:10px; }
+.pick { position:relative; }
+.pick input { position:absolute; opacity:0; pointer-events:none; }
+.tile { display:block; border:2px solid var(--line); border-radius:10px; padding:6px; cursor:pointer; height:100%; background:var(--surface); }
+.tile img, .tile .none { width:100%; aspect-ratio:4 / 5; object-fit:cover; border-radius:6px; display:grid; place-items:center; background:var(--mono); color:var(--ink2); font-weight:700; font-size:28px; }
+.tile .cap { font-size:11.5px; color:var(--ink2); margin-top:5px; line-height:1.3; }
+.tile .none.small { font-size:13px; font-weight:600; }
+.pick input:checked + .tile { border-color:var(--accent); background:var(--accent-bg); }
+.pick input:checked + .tile .cap { color:var(--ink); }
+.qids label { display:flex; gap:10px; align-items:flex-start; padding:8px 10px; border:1px solid var(--line); border-radius:8px; margin-top:6px; cursor:pointer; }
+.qids input:checked ~ div .t { color:var(--accent); }
+.submit { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:18px; }
+.summary { color:var(--ink2); font-size:13px; }
+.err { color:var(--no); font-size:13px; }
+.signin { max-width:380px; display:grid; gap:10px; }
+.reqs .req { padding:10px 0; border-bottom:1px solid var(--line); }
+.reqs .req:last-child { border-bottom:0; }
+.status { font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+.status.pending { color:var(--warn); } .status.applied { color:var(--match); }
+.status.rejected, .status.failed { color:var(--no); } .status.reverted { color:var(--ink3); }
+.toast { position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:10px 16px; border-radius:10px; font-weight:600; z-index:5; max-width:calc(100vw - 32px); }
+.toast[hidden] { display:none; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+@media (max-width: 860px) {
+  main { padding:16px; }
+  .layout { grid-template-columns:1fr; }
+  .sticky { position:static; }
+  .results { max-height:420px; }
+  header { padding:12px 16px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Opus <span>· Merge artists</span></div>
+  <div class="who" id="who"></div>
+</header>
+<main>
+  <p class="intro">Sometimes one artist shows up in Opus under several names, like “Rembrandt” and “Rembrandt Harmensz. van Rijn”.
+    Pick every entry that's the same person, choose the name and picture to keep, and send the request. Someone reviews it
+    before anything changes in the app.</p>
+  <div class="layout">
+    <section class="panel sticky" aria-labelledby="find-h">
+      <h2 id="find-h">1 · Find the artists</h2>
+      <label class="sr" for="q">Search artists</label>
+      <input id="q" type="search" placeholder="Search a name, or #id" autocomplete="off" spellcheck="false">
+      <p class="hint">Search each spelling you know. Add every entry that's the same person.</p>
+      <div class="results" id="results" aria-live="polite"></div>
+    </section>
+    <div>
+      <section class="panel" id="auth" style="margin-bottom:20px" hidden></section>
+      <section class="panel" id="form" aria-label="Merge request"></section>
+      <section class="panel reqs" id="mine" style="margin-top:20px" aria-labelledby="mine-h" hidden></section>
+    </div>
+  </div>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.90.1/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL = "https://vrkyrldnodmxqxppweim.supabase.co";
+const SUPABASE_KEY = "sb_publishable_4aOPGlmCWv-N52IGbg3_uQ_Z-Y5WSd_";  // publishable: same key the app ships with
+const FILEPATH = "https://commons.wikimedia.org/wiki/Special:FilePath/";
+const MAX_ARTISTS = 20;
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num = (n) => Number(n || 0).toLocaleString();
+const years = (a) => a.birth_year && a.death_year ? `${a.birth_year}–${a.death_year}`
+  : a.death_year ? `d. ${a.death_year}` : a.birth_year ? `b. ${a.birth_year}` : "";
+const initials = (name) => (name || "?").replace(/[^\p{L}\s]/gu, " ").trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase() || "?";
+const when = (t) => new Date(t).toLocaleString(undefined, {dateStyle: "medium", timeStyle: "short"});
+
+const S = {
+  user: null, username: null,
+  results: [], query: "",
+  selected: [],            // artist_merge_details rows, in the order added
+  wd: new Map(),           // qid -> {label, description, files: [...]} (null while loading)
+  name: "", nameTouched: false,
+  picture: null,           // chosen picture key (its URL, or "none")
+  qid: null,               // chosen Wikidata identity when the artists disagree
+  notes: "",
+  sending: false, error: "",
+  mine: [],
+};
+
+// --- avatars / Commons URLs ---------------------------------------------
+
+function avatar(a, cls = "") {
+  return a.image_url
+    ? `<img class="av ${cls}" src="${esc(a.image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer" data-fb="${esc(initials(a.canonical_name))}">`
+    : `<div class="av ${cls}" aria-hidden="true">${esc(initials(a.canonical_name))}</div>`;
+}
+
+// The Commons file name behind any Commons URL form, normalized the way
+// MediaWiki stores it -- to spot the same portrait reached two ways.
+function commonsFile(url) {
+  const norm = (f) => { f = f.replace(/ /g, "_"); return f.charAt(0).toUpperCase() + f.slice(1); };
+  try {
+    const p = new URL(url).pathname;
+    const m = p.match(/\/wikipedia\/commons\/thumb\/[0-9a-f]\/[0-9a-f]{2}\/([^/]+)\//)
+      || p.match(/\/wikipedia\/commons\/[0-9a-f]\/[0-9a-f]{2}\/([^/]+)$/)
+      || p.match(/\/wiki\/Special:FilePath\/(?:File:)?(.+)$/);
+    return m ? norm(decodeURIComponent(m[1])) : null;
+  } catch { return null; }
+}
+const filePathUrl = (file) => FILEPATH + encodeURIComponent(file.replace(/ /g, "_"));
+
+// --- data ----------------------------------------------------------------
+
+async function rpc(fn, args) {
+  const { data, error } = await sb.rpc(fn, args);
+  if (error) throw new Error(error.message);
+  return data;
+}
+
+let searchSeq = 0, searchTimer;
+function onSearch() {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(async () => {
+    const q = $("#q").value.trim(), seq = ++searchSeq;
+    S.query = q;
+    if (q.length < 2) { S.results = []; renderResults(); return; }
+    $("#results").innerHTML = `<p class="empty">Searching…</p>`;
+    try {
+      const rows = await rpc("search_artists_for_merge", { p_query: q, p_limit: 30 });
+      if (seq === searchSeq) { S.results = rows; renderResults(); }
+    } catch (e) {
+      if (seq === searchSeq) $("#results").innerHTML = `<p class="err">Search failed: ${esc(e.message)}</p>`;
+    }
+  }, 280);
+}
+
+async function addArtist(id) {
+  if (S.selected.some((a) => a.id === id) || S.selected.length >= MAX_ARTISTS) return;
+  const placeholder = S.results.find((r) => r.id === id);
+  S.selected.push({ ...placeholder, loading: true });
+  renderAll();
+  try {
+    const [row] = await rpc("artist_merge_details", { p_artist_ids: [id] });
+    const i = S.selected.findIndex((a) => a.id === id);
+    if (i < 0) return;  // removed while loading
+    if (!row) { S.selected.splice(i, 1); toast("That artist no longer exists."); renderAll(); return; }
+    S.selected[i] = row;
+    loadWikidata([row.wikidata_qid, row.wikidata_candidate_qid].filter(Boolean));
+  } catch (e) {
+    S.selected = S.selected.filter((a) => a.id !== id);
+    toast("Couldn't load that artist: " + e.message);
+  }
+  renderAll();
+}
+
+function removeArtist(id) {
+  S.selected = S.selected.filter((a) => a.id !== id);
+  renderAll();
+}
+
+// Labels and P18 portraits, straight from Wikidata (CORS via origin=*).
+async function loadWikidata(qids) {
+  const need = [...new Set(qids)].filter((q) => !S.wd.has(q));
+  if (!need.length) return;
+  need.forEach((q) => S.wd.set(q, null));
+  const api = "https://www.wikidata.org/w/api.php?format=json&origin=*&";
+  try {
+    const ents = await fetch(api + `action=wbgetentities&props=labels|descriptions&languages=en&ids=${need.join("|")}`).then((r) => r.json());
+    await Promise.all(need.map(async (q) => {
+      const claims = await fetch(api + `action=wbgetclaims&property=P18&entity=${q}`).then((r) => r.json());
+      const e = ents.entities?.[q] || {};
+      S.wd.set(q, {
+        label: e.labels?.en?.value || q,
+        description: e.descriptions?.en?.value || "",
+        files: (claims.claims?.P18 || []).map((c) => c.mainsnak?.datavalue?.value).filter(Boolean),
+      });
+    }));
+  } catch (e) {
+    need.forEach((q) => { if (!S.wd.get(q)) S.wd.set(q, { label: q, description: "", files: [], failed: true }); });
+  }
+  renderForm();
+}
+
+// --- derived state ---------------------------------------------------------
+
+const ready = () => S.selected.filter((a) => !a.loading);
+const strictQids = () => [...new Set(ready().map((a) => a.wikidata_qid).filter(Boolean))].sort();
+const allQids = () => [...new Set(ready().flatMap((a) => [a.wikidata_qid, a.wikidata_candidate_qid]).filter(Boolean))].sort();
+
+// The name most likely right: the Wikidata-linked, best-known entry.
+function suggestedName() {
+  const best = [...ready()].sort((a, b) =>
+    (!!b.wikidata_qid - !!a.wikidata_qid) || ((b.total_sitelinks || 0) - (a.total_sitelinks || 0)) || ((b.work_count || 0) - (a.work_count || 0)))[0];
+  return best ? best.canonical_name : "";
+}
+
+// Picture choices: each artist's current picture, then each Wikidata
+// portrait, the same file only once; then "no picture".
+function pictureOptions() {
+  const out = [], seen = new Map();
+  for (const a of ready()) {
+    if (!a.image_url) continue;
+    const f = commonsFile(a.image_url) || a.image_url;
+    if (seen.has(f)) { seen.get(f).from.push(a.canonical_name); continue; }
+    const o = { key: a.image_url, url: a.image_url, src: a.image_url, from: [a.canonical_name], kind: "current" };
+    seen.set(f, o); out.push(o);
+  }
+  for (const q of allQids()) {
+    const w = S.wd.get(q);
+    for (const file of (w?.files || [])) {
+      const f = commonsFile(filePathUrl(file));
+      if (seen.has(f)) { seen.get(f).wd = seen.get(f).wd || q; continue; }
+      const url = filePathUrl(file);
+      const o = { key: url, url, src: url + "?width=330", from: [], wd: q, kind: "wikidata" };
+      seen.set(f, o); out.push(o);
+    }
+  }
+  out.push({ key: "none", url: null, kind: "none" });
+  return out;
+}
+
+function problems() {
+  const p = [];
+  if (!S.user) p.push("Sign in to send the request.");
+  if (ready().length < 2) p.push("Add at least two artists.");
+  if (!S.name.trim()) p.push("Give the merged artist a name.");
+  if (!S.picture) p.push("Pick a picture.");
+  if (strictQids().length > 1 && !S.qid) p.push("Say which Wikidata entry is right.");
+  if (S.selected.some((a) => a.loading)) p.push("Loading artist details…");
+  return p;
+}
+
+// --- rendering ---------------------------------------------------------------
+
+function renderAll() { renderResults(); renderForm(); }
+
+function renderWho() {
+  $("#who").innerHTML = S.user
+    ? `<span>Signed in as <b>@${esc(S.username || S.user.email)}</b></span><button class="btn small" id="signout">Sign out</button>`
+    : "";
+  const so = $("#signout");
+  if (so) so.onclick = async () => { await sb.auth.signOut(); };
+}
+
+function renderResults() {
+  const el = $("#results");
+  if (S.query.length < 2) { el.innerHTML = `<p class="empty">Type at least two letters.</p>`; return; }
+  if (!S.results.length) { el.innerHTML = `<p class="empty">No artists match “${esc(S.query)}”.</p>`; return; }
+  const full = S.selected.length >= MAX_ARTISTS;
+  el.innerHTML = S.results.map((a) => {
+    const added = S.selected.some((s) => s.id === a.id);
+    const meta = [years(a), `${num(a.work_count)} works`, a.wikidata_qid || (a.wikidata_candidate_qid ? a.wikidata_candidate_qid + "?" : ""), `#${a.id}`].filter(Boolean).join(" · ");
+    return `<div class="row">${avatar(a)}
+      <div><div class="t">${esc(a.canonical_name)}</div><div class="m">${esc(meta)}</div></div>
+      <button class="btn small" data-add="${a.id}" ${added || full ? "disabled" : ""} aria-label="${added ? "Added" : "Add"} ${esc(a.canonical_name)}">${added ? "Added" : "Add"}</button></div>`;
+  }).join("");
+  el.querySelectorAll("[data-add]").forEach((b) => b.onclick = () => addArtist(+b.dataset.add));
+}
+
+function artistCard(a) {
+  if (a.loading) {
+    return `<div class="card">${avatar(a, "lg")}<div><div class="t">${esc(a.canonical_name)}</div><div class="m">Loading details…</div></div>
+      <button class="btn small" data-remove="${a.id}">Remove</button></div>`;
+  }
+  const qid = a.wikidata_qid || a.wikidata_candidate_qid;
+  const wd = qid && S.wd.get(qid);
+  const qidChip = qid ? `<a class="chip ${a.wikidata_qid ? "" : "cand"}" href="https://www.wikidata.org/wiki/${esc(qid)}" target="_blank" rel="noopener"
+      title="${a.wikidata_qid ? "Linked Wikidata entry" : "Possible Wikidata match (not confirmed)"}">${esc(qid)}${wd?.label && wd.label !== qid ? " · " + esc(wd.label) : ""}${a.wikidata_qid ? "" : "?"}</a>` : "";
+  const variants = (a.name_variants || []).filter((v) => v !== a.canonical_name);
+  const insts = (a.institutions || []).map((i) => `${i.name}${i.city ? " (" + i.city + ")" : ""} · ${num(i.works)}`);
+  const works = (a.sample_works || []).map((w) => `<div class="work" title="${esc(w.title)}${w.date ? " · " + esc(w.date) : ""}${w.institution ? " · " + esc(w.institution) : ""}">
+      ${w.thumb ? `<img src="${esc(w.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer" data-fb="–" data-fb-class="ph">` : `<div class="ph" aria-hidden="true">©</div>`}
+      <div class="cap">${esc(w.title)}${w.date ? " · " + esc(w.date) : ""}</div></div>`).join("");
+  return `<div class="card">${avatar(a, "lg")}
+    <div><div class="t">${esc(a.canonical_name)}</div>
+      <div class="m">${esc([years(a), `${num(a.work_count)} works`, `#${a.id}`].filter(Boolean).join(" · "))} ${qidChip}</div>
+      ${wd?.description ? `<div class="m">${esc(wd.description)}</div>` : ""}</div>
+    <button class="btn small" data-remove="${a.id}" aria-label="Remove ${esc(a.canonical_name)}">Remove</button>
+    <div class="more">
+      ${variants.length ? `<div class="m variants">Also written: ${variants.map((v) => "“" + esc(v) + "”").join(", ")}</div>` : ""}
+      ${insts.length ? `<div class="m">At ${esc(insts.join(" · "))}</div>` : ""}
+      ${works ? `<div class="works">${works}</div>` : ""}
+    </div></div>`;
+}
+
+function renderForm() {
+  const el = $("#form");
+  const sel = S.selected, rs = ready();
+  const strict = strictQids();
+  if (!S.nameTouched) S.name = suggestedName();
+  const opts = pictureOptions();
+  if (S.picture && !opts.some((o) => o.key === S.picture)) S.picture = null;
+  if (S.qid && !strict.includes(S.qid)) S.qid = null;
+  const loadingWd = allQids().some((q) => S.wd.get(q) === null);
+  if (opts.length === 1 && rs.length >= 2 && !loadingWd) S.picture = "none";  // nobody has a portrait
+
+  const warn = [];
+  if (strict.length > 1) {
+    warn.push(`<div class="note bad"><b>These are linked to different people on Wikidata.</b> Two Wikidata entries usually means two
+      different artists. Only merge if you're sure they're one person, and pick the right entry below.</div>`);
+  } else if (allQids().length > 1) {
+    warn.push(`<div class="note warn">Wikidata suggests these might be different people (${allQids().map(esc).join(", ")}). Check before merging.</div>`);
+  }
+  const births = [...new Set(rs.map((a) => a.birth_year).filter(Boolean))], deaths = [...new Set(rs.map((a) => a.death_year).filter(Boolean))];
+  if (births.length > 1 || deaths.length > 1) {
+    warn.push(`<div class="note warn">Their dates don't agree (${[...births.map((b) => "born " + b), ...deaths.map((d) => "died " + d)].join(", ")}).</div>`);
+  }
+
+  const totalWorks = rs.reduce((n, a) => n + Number(a.work_count || 0), 0);
+  const prob = problems();
+
+  const focused = document.activeElement, fid = focused?.id;
+  const caret = fid && "selectionStart" in focused ? [focused.selectionStart, focused.selectionEnd] : null;
+  el.innerHTML = `
+    <div class="step"><h2>2 · Artists to merge <span class="n">(${sel.length})</span></h2>
+      ${sel.length ? `<div class="cards">${sel.map(artistCard).join("")}</div>` : `<p class="empty">Add the entries that are the same person from the search.</p>`}
+      ${sel.length === 1 ? `<p class="hint">Add at least one more.</p>` : ""}
+      ${warn.join("")}
+    </div>
+    ${strict.length > 1 ? `<div class="step"><h2>Which Wikidata entry is right?</h2><div class="qids" role="radiogroup">
+      ${strict.map((q) => { const w = S.wd.get(q); const who = rs.filter((a) => a.wikidata_qid === q).map((a) => a.canonical_name);
+        return `<label><input type="radio" name="qid" value="${esc(q)}" ${S.qid === q ? "checked" : ""}>
+          <div><div class="t">${w?.label && w.label !== q ? esc(w.label) + " " : ""}<a class="chip" href="https://www.wikidata.org/wiki/${esc(q)}" target="_blank" rel="noopener">${esc(q)}</a></div>
+          <div class="m">${esc(w?.description || "")}${w?.description ? " · " : ""}linked to ${esc(who.join(", "))}</div></div></label>`; }).join("")}
+      </div></div>` : ""}
+    <div class="step"><h2><label for="name">3 · Name</label></h2>
+      <input id="name" type="text" maxlength="300" value="${esc(S.name)}" placeholder="What should Opus call this artist?">
+      <p class="hint">Use the name people know them by, the way a museum label would write it.</p>
+    </div>
+    <div class="step"><h2 id="pic-h">4 · Picture</h2>
+      ${rs.length < 2 ? `<p class="empty">Add the artists first.</p>` : `
+      <div class="pics" role="radiogroup" aria-labelledby="pic-h">${opts.map((o, i) => `<div class="pick">
+          <input type="radio" name="pic" id="pic${i}" value="${esc(o.key)}" ${S.picture === o.key ? "checked" : ""}>
+          <label class="tile" for="pic${i}">${o.kind === "none"
+            ? `<div class="none" aria-hidden="true">${esc(initials(S.name))}</div><div class="cap"><b>No picture</b><br>Opus shows their initials</div>`
+            : `<img src="${esc(o.src)}" alt="Portrait option ${i + 1}" loading="lazy" referrerpolicy="no-referrer" data-fb="Didn't load" data-fb-class="none small">
+               <div class="cap">${o.kind === "current" ? `Current picture of ${esc(o.from.join(", "))}` : ""}${o.wd ? `${o.kind === "current" ? "<br>" : ""}Wikidata portrait · ${esc(S.wd.get(o.wd)?.label || o.wd)}` : ""}</div>`}
+          </label></div>`).join("")}</div>
+      ${loadingWd ? `<p class="hint">Looking for portraits on Wikidata…</p>` : ""}
+      ${opts.length === 1 ? `<p class="hint">None of these artists has a portrait, on Opus or Wikidata.</p>` : `<p class="hint">Only portraits of the person, never one of their works.</p>`}`}
+    </div>
+    <div class="step"><h2><label for="notes">5 · Notes for the reviewer <span style="text-transform:none;font-weight:500">(optional)</span></label></h2>
+      <textarea id="notes" maxlength="2000" placeholder="How do you know they're the same person? A source link helps.">${esc(S.notes)}</textarea>
+    </div>
+    <div class="step">
+      <div class="submit">
+        <button class="btn primary" id="send" ${prob.length || S.sending ? "disabled" : ""}>${S.sending ? "Sending…" : "Send merge request"}</button>
+        <span class="summary">${rs.length >= 2 && S.name.trim() ? `Merges ${rs.length} entries (${num(totalWorks)} works) into “${esc(S.name.trim())}”.` : ""}
+          ${prob.length ? `<br><span style="color:var(--ink3)">${esc(prob[0])}</span>` : ""}</span>
+      </div>
+      <div class="err" id="send-err" role="alert">${esc(S.error)}</div>
+    </div>`;
+
+  el.querySelectorAll("[data-remove]").forEach((b) => b.onclick = () => removeArtist(+b.dataset.remove));
+  const name = $("#name", el);
+  name.oninput = () => { S.name = name.value; S.nameTouched = true; refreshSubmit(); updateNoneInitials(); };
+  const notes = $("#notes", el);
+  notes.oninput = () => { S.notes = notes.value; };
+  el.querySelectorAll("input[name=pic]").forEach((r) => r.onchange = () => { S.picture = r.value; refreshSubmit(); });
+  el.querySelectorAll("input[name=qid]").forEach((r) => r.onchange = () => { S.qid = r.value; refreshSubmit(); });
+  $("#send", el).onclick = send;
+  const again = fid && el.contains(document.getElementById(fid)) && document.getElementById(fid);
+  if (again) { again.focus(); if (caret) try { again.setSelectionRange(...caret); } catch {} }
+}
+
+// Cheap updates while typing, so the name field keeps focus.
+function refreshSubmit() {
+  const prob = problems(), rs = ready();
+  $("#send").disabled = !!prob.length || S.sending;
+  const total = rs.reduce((n, a) => n + Number(a.work_count || 0), 0);
+  $(".summary").innerHTML = (rs.length >= 2 && S.name.trim() ? `Merges ${rs.length} entries (${num(total)} works) into “${esc(S.name.trim())}”.` : "")
+    + (prob.length ? `<br><span style="color:var(--ink3)">${esc(prob[0])}</span>` : "");
+}
+function updateNoneInitials() {
+  const n = $(".tile .none"); if (n) n.textContent = initials(S.name);
+}
+
+function renderAuth() {
+  const el = $("#auth");
+  el.hidden = !!S.user;
+  if (S.user) { el.innerHTML = ""; return; }
+  el.innerHTML = `<form class="signin" id="signin">
+    <h2 style="margin:0">Sign in</h2>
+    <div class="m">Use your Opus account. You can look around without one, but you need it to send a request.</div>
+    <label class="sr" for="email">Email</label><input id="email" type="email" autocomplete="email" placeholder="Email" required>
+    <label class="sr" for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Password" required>
+    <div><button class="btn" type="submit" id="signin-btn">Sign in</button></div>
+    <div class="err" id="signin-err" role="alert"></div>
+    <p class="hint" style="margin:0">No account? Create one in the Opus app.</p></form>`;
+  const f = $("#signin");
+  f.onsubmit = async (e) => {
+    e.preventDefault();
+    $("#signin-btn").disabled = true; $("#signin-err").textContent = "";
+    const { error } = await sb.auth.signInWithPassword({ email: $("#email").value.trim(), password: $("#password").value });
+    if (error) { $("#signin-err").textContent = error.message; $("#signin-btn").disabled = false; }
+  };
+}
+
+function renderMine() {
+  const el = $("#mine");
+  el.hidden = !S.user;
+  if (!S.user) return;
+  el.innerHTML = `<h2 id="mine-h">Your requests</h2>` + (S.mine.length ? S.mine.map((r) => `<div class="req">
+      <div><span class="status ${esc(r.status)}">${esc(r.status)}</span> · <span class="m">${when(r.created_at)}</span></div>
+      <div class="t">“${esc(r.merged_name)}”</div>
+      <div class="m">${(r.artist_names || []).map((n, i) => `${esc(n)} <span style="color:var(--ink3)">#${r.artist_ids[i]}</span>`).join(" + ")}</div>
+      ${r.status === "applied" ? `<div class="m">Live in the app${r.processed_at ? " since " + when(r.processed_at) : ""}.</div>` : ""}
+      ${r.status === "pending" ? `<div class="m">Waiting for review.</div>` : ""}
+      ${r.status_note && r.status !== "pending" ? `<div class="m">${esc(r.status_note)}</div>` : ""}</div>`).join("")
+    : `<p class="empty">Nothing yet.</p>`);
+}
+
+async function loadMine() {
+  if (!S.user) { S.mine = []; renderMine(); return; }
+  const { data, error } = await sb.from("artist_merge_requests")
+    .select("id, created_at, artist_ids, artist_names, merged_name, image_url, status, status_note, processed_at")
+    .order("created_at", { ascending: false }).limit(50);
+  S.mine = error ? [] : data;
+  renderMine();
+}
+
+// --- submit ------------------------------------------------------------------
+
+async function send() {
+  if (problems().length || S.sending) return;
+  S.sending = true; S.error = ""; renderForm();
+  const pic = pictureOptions().find((o) => o.key === S.picture);
+  const { error } = await sb.from("artist_merge_requests").insert({
+    artist_ids: ready().map((a) => a.id),
+    merged_name: S.name.trim(),
+    image_url: pic ? pic.url : null,
+    wikidata_qid: strictQids().length > 1 ? S.qid : null,
+    notes: S.notes.trim() || null,
+  });
+  S.sending = false;
+  if (error) { S.error = error.message; renderForm(); return; }
+  Object.assign(S, { selected: [], name: "", nameTouched: false, picture: null, qid: null, notes: "" });
+  renderAll();
+  toast("Request sent. It'll be reviewed before it changes the app.");
+  loadMine();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+let toastTimer;
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 4500);
+}
+
+// --- auth --------------------------------------------------------------------
+
+async function setUser(user) {
+  S.user = user || null; S.username = null;
+  if (S.user) {
+    const { data } = await sb.from("profiles").select("username").eq("id", S.user.id).maybeSingle();
+    S.username = data?.username || null;
+  }
+  renderWho(); renderAuth(); renderForm(); loadMine();
+}
+
+sb.auth.onAuthStateChange((event, session) => {
+  if (["INITIAL_SESSION", "SIGNED_IN", "SIGNED_OUT", "USER_UPDATED"].includes(event)) {
+    setTimeout(() => setUser(session?.user), 0);  // not inside the callback: it holds the auth lock
+  }
+});
+$("#q").addEventListener("input", onSearch);
+// A broken image (some museum hosts block hotlinking) becomes its fallback.
+document.addEventListener("error", (e) => {
+  const img = e.target;
+  if (!(img instanceof HTMLImageElement) || img.dataset.fb == null) return;
+  const d = document.createElement("div");
+  d.className = img.dataset.fbClass || img.className;
+  d.setAttribute("aria-hidden", "true");
+  d.textContent = img.dataset.fb;
+  img.replaceWith(d);
+}, true);
+renderAll();
+</script>
+</body>
+</html>
