@@ -268,11 +268,22 @@ const ready = () => S.selected.filter((a) => !a.loading);
 const strictQids = () => [...new Set(ready().map((a) => a.wikidata_qid).filter(Boolean))].sort();
 const allQids = () => [...new Set(ready().flatMap((a) => [a.wikidata_qid, a.wikidata_candidate_qid]).filter(Boolean))].sort();
 
-// The name most likely right: the Wikidata-linked, best-known entry.
+// The name most likely right: the best-known entry written "First Last".
+// Catalogue forms ("Aspertini, Amico") are skipped, or turned around if
+// every entry is written that way.
+const plainName = (n) => !/[,;|\d\n]/.test(n);
+function flipSurnameFirst(n) {
+  const m = n.match(/^([^,;|\d\n]+), ([^,;|\d\n]+)$/);
+  if (!m) return n;
+  const [last, first] = [m[1].trim(), m[2].trim()];
+  return first + (/['’]$/.test(first) ? "" : " ") + last;
+}
 function suggestedName() {
-  const best = [...ready()].sort((a, b) =>
-    (!!b.wikidata_qid - !!a.wikidata_qid) || ((b.total_sitelinks || 0) - (a.total_sitelinks || 0)) || ((b.work_count || 0) - (a.work_count || 0)))[0];
-  return best ? best.canonical_name : "";
+  const ranked = [...ready()].sort((a, b) =>
+    (!!b.wikidata_qid - !!a.wikidata_qid) || ((b.total_sitelinks || 0) - (a.total_sitelinks || 0)) || ((b.work_count || 0) - (a.work_count || 0)));
+  if (!ranked.length) return "";
+  const plain = ranked.find((a) => plainName(a.canonical_name));
+  return plain ? plain.canonical_name : flipSurnameFirst(ranked[0].canonical_name);
 }
 
 // Picture choices: each artist's current picture, then each Wikidata
@@ -415,10 +426,10 @@ function renderForm() {
           <label class="tile" for="pic${i}">${o.kind === "none"
             ? `<div class="none" aria-hidden="true">${esc(initials(S.name))}</div><div class="cap"><b>No picture</b><br>Opus shows their initials</div>`
             : `<img src="${esc(o.src)}" alt="Portrait option ${i + 1}" loading="lazy" referrerpolicy="no-referrer" data-fb="Didn't load" data-fb-class="none small">
-               <div class="cap">${o.kind === "current" ? `Current picture of ${esc(o.from.join(", "))}` : ""}${o.wd ? `${o.kind === "current" ? "<br>" : ""}Wikidata portrait · ${esc(S.wd.get(o.wd)?.label || o.wd)}` : ""}</div>`}
+               <div class="cap">${o.kind === "current" ? `Current picture of ${esc(o.from.join(", "))}` : ""}${o.wd ? `${o.kind === "current" ? "<br>" : ""}Wikidata image · ${esc(S.wd.get(o.wd)?.label || o.wd)}` : ""}</div>`}
           </label></div>`).join("")}</div>
-      ${loadingWd ? `<p class="hint">Looking for portraits on Wikidata…</p>` : ""}
-      ${opts.length === 1 ? `<p class="hint">None of these artists has a portrait, on Opus or Wikidata.</p>` : `<p class="hint">Only portraits of the person, never one of their works.</p>`}`}
+      ${loadingWd ? `<p class="hint">Looking for pictures on Wikidata…</p>` : ""}
+      ${opts.length === 1 ? `<p class="hint">None of these artists has a portrait, on Opus or Wikidata.</p>` : `<p class="hint">Pick a picture of the person, never one of their works. When nobody knows what an artist looked like, Wikidata's image is often one of their works: choose “No picture” then.</p>`}`}
     </div>
     <div class="step"><h2><label for="notes">5 · Notes for the reviewer <span style="text-transform:none;font-weight:500">(optional)</span></label></h2>
       <textarea id="notes" maxlength="2000" placeholder="How do you know they're the same person? A source link helps.">${esc(S.notes)}</textarea>
