@@ -7,7 +7,7 @@ import '@fontsource-variable/source-serif-4/wght-italic.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE, url, POSTHOG_KEY, POSTHOG_HOST } from '../lib/site';
+import { SITE, url, POSTHOG_KEY, POSTHOG_HOST, CF_BEACON_TOKEN } from '../lib/site';
 
 interface Props {
   title: string;
@@ -53,6 +53,9 @@ const org = {
   <script is:inline define:vars={{ POSTHOG_KEY, POSTHOG_HOST }}>
     window.__opus = { events: [], key: POSTHOG_KEY, host: POSTHOG_HOST };
   </script>
+  {CF_BEACON_TOKEN && !import.meta.env.DEV && (
+    <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: CF_BEACON_TOKEN })}></script>
+  )}
 </head>
 <body>
   <a class="sr-only" href="#main">Skip to content</a>

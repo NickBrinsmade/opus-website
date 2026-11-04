@@ -25,6 +25,10 @@ export const SUPABASE_KEY = 'sb_publishable_4aOPGlmCWv-N52IGbg3_uQ_Z-Y5WSd_';
 export const POSTHOG_KEY = '';
 export const POSTHOG_HOST = 'https://us.i.posthog.com';
 
+// Cloudflare Web Analytics beacon token (public by design). Empty = off.
+// The DNS records are DNS-only, so Cloudflare can't auto-inject it.
+export const CF_BEACON_TOKEN = 'd3e3df51a48e4afca776045553ca8332';
+
 export const CATEGORIES: Record<string, string> = {
   recognition: 'Recognizing art',
   museums: 'Visiting museums',
