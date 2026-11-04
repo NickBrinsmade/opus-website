@@ -22,7 +22,7 @@ export const SUPABASE_URL = 'https://vrkyrldnodmxqxppweim.supabase.co';
 export const SUPABASE_KEY = 'sb_publishable_4aOPGlmCWv-N52IGbg3_uQ_Z-Y5WSd_';
 
 // PostHog project key (public by design). Empty = analytics off.
-export const POSTHOG_KEY = '';
+export const POSTHOG_KEY = 'phc_mGg42sg8ZKb28gmhbpqc75xAgU8rXoAs3sRQhwsGD6bb';
 export const POSTHOG_HOST = 'https://us.i.posthog.com';
 
 // Cloudflare Web Analytics beacon token (public by design). Empty = off.
