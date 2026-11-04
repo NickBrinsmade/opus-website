@@ -42,13 +42,13 @@ export const CATEGORIES: Record<string, string> = {
 export const AUDIENCES: Record<string, { heading: string; body: string; sticky: string }> = {
   travelers: {
     heading: 'Take Opus on your next trip.',
-    body: 'Point your camera at a painting or sculpture and know what you’re looking at, then find what else is worth seeing nearby. We’re letting testers in now.',
+    body: 'Know what you’re looking at from a photo, then find the masterpieces, hidden gems and exhibitions near you. We’re letting testers in now.',
     sticky: 'Take Opus on your trip',
   },
   regulars: {
-    heading: 'Remember everything you see.',
-    body: 'Opus identifies works from a photo and keeps track of the museums you visit and the works you save, with badges along the way. We’re letting testers in now.',
-    sticky: 'Keep a record of the art you see',
+    heading: 'Rate and review the art you see.',
+    body: 'Log the works and exhibitions you see, rate and review them, and follow friends to see what they loved. We’re letting testers in now.',
+    sticky: 'Rate and review the art you see',
   },
   students: {
     heading: 'Identify any artwork from a photo.',
