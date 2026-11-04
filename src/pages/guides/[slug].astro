@@ -7,7 +7,7 @@ import StickyCta from '../../components/StickyCta.astro';
 import GuideCard from '../../components/GuideCard.astro';
 import Phone from '../../components/Phone.astro';
 import { allGuides, readingMinutes, fmtDate, isDraft, type Guide } from '../../lib/guides';
-import { CATEGORIES, url } from '../../lib/site';
+import { AUDIENCES, CATEGORIES, url } from '../../lib/site';
 
 export async function getStaticPaths() {
   const guides = await allGuides();
@@ -20,6 +20,7 @@ const d = guide.data;
 const { Content, headings } = await render(guide);
 const toc = headings.filter((h) => h.depth === 2);
 const minutes = readingMinutes(guide.body);
+const cta = AUDIENCES[d.audience];
 const pageUrl = new URL(url(`/guides/${guide.id}/`), Astro.site).href;
 
 // Related: hand-picked first, then same category, then newest.
@@ -59,7 +60,7 @@ if (d.faq.length) jsonLd.push({
 ---
 <Base title={d.title} description={d.description} type="article" image={d.hero?.src} jsonLd={jsonLd} noindex={isDraft(guide)}>
   {isDraft(guide) && <div class="draft-bar">Draft: only visible in local preview. Approve by moving it into src/content/guides.</div>}
-  <article class="guide">
+  <article class="guide" data-audience={d.audience}>
     <header class="g-head measure">
       <nav class="crumbs" aria-label="Breadcrumb">
         <a href={url('/')}>Home</a><span>/</span><a href={url('/guides/')}>Guides</a><span>/</span><a href={url(`/guides/#${d.category}`)}>{CATEGORIES[d.category]}</a>
@@ -97,7 +98,7 @@ if (d.faq.length) jsonLd.push({
           </section>
         )}
 
-        <EndCta />
+        <EndCta heading={cta.heading} body={cta.body} />
       </div>
     </div>
   </article>
@@ -108,7 +109,7 @@ if (d.faq.length) jsonLd.push({
       <div class="cards">{related.map((g) => <GuideCard guide={g} />)}</div>
     </section>
   )}
-  <StickyCta slug={guide.id} />
+  <StickyCta slug={guide.id} text={cta.sticky} />
 </Base>
 
 <style>

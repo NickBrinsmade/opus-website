@@ -2,11 +2,11 @@
 // Slim mobile bar. Appears after the reader passes the first inline CTA,
 // hides whenever another CTA is on screen, and stays gone once dismissed.
 import { url } from '../lib/site';
-interface Props { slug: string }
-const { slug } = Astro.props;
+interface Props { slug: string; text?: string }
+const { slug, text = 'Identify art with your camera' } = Astro.props;
 ---
 <div class="sticky-cta" data-sticky-cta hidden>
-  <span>Identify art with your camera</span>
+  <span>{text}</span>
   <a class="btn btn-gilt" href={url(`/access/?src=${slug}`)} data-cta="guide-sticky">Get an invite</a>
   <button type="button" aria-label="Dismiss" data-dismiss>×</button>
 </div>

@@ -10,6 +10,9 @@ const schema = z.object({
     // The query this guide is built to answer (from keyword research / Search Console).
     keyword: z.string(),
     category: z.enum(['recognition', 'museums', 'research', 'reviewing']),
+    // Who the guide is written for. Picks the end and sticky CTA wording
+    // (AUDIENCES in lib/site.ts) and tags every analytics event.
+    audience: z.enum(['travelers', 'regulars', 'students', 'families', 'researchers', 'finders']),
     published: z.coerce.date(),
     updated: z.coerce.date().optional(),
     author: z.string().default('Nick Brinsmade'),
@@ -29,7 +32,7 @@ const guides = defineCollection({
 // and only render in `npm run dev`. Approving = moving the file into
 // src/content/guides.
 const drafts = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: '../guide-drafts' }),
+  loader: glob({ pattern: ['**/*.{md,mdx}', '!PLAN.md'], base: '../guide-drafts' }),
   schema,
 });
 

@@ -1,6 +1,6 @@
 // Reading-depth and CTA analytics.
 //
-// Events (all carry `path`):
+// Events (all carry `path`, and `audience` on guide pages):
 //   page_view
 //   read_depth     {pct: 25|50|75|90|100}     share of the article body scrolled past
 //   section_reach  {index, heading}           an article H2 entered the viewport
@@ -20,7 +20,8 @@ declare global {
 }
 
 export function track(event: string, props: Props = {}) {
-  const full = { path: location.pathname, ...props };
+  const audience = document.querySelector<HTMLElement>('[data-audience]')?.dataset.audience;
+  const full = { path: location.pathname, audience, ...props };
   window.__opus.events.push({ event, props: full });
   window.posthog?.capture(event, full);
 }

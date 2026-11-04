@@ -31,6 +31,8 @@ npm run build      # production build + internal-link audit
 - CTAs: `<InlineCta heading="…" body="…" />` right after the quick answer and where the
   article describes the problem Opus solves. The end CTA, sticky mobile bar, FAQ and related
   guides are added by the template.
+- `audience:` (travelers, regulars, students, families, researchers, finders) picks the end and
+  sticky CTA wording from `AUDIENCES` in `src/lib/site.ts` and tags every analytics event.
 - Never describe how Opus works inside (models, matching, cropping, accuracy tests).
   General explanations of how art recognition works are fine.
 - `npm run links` reports guides with no in-body links pointing at them, and other guides

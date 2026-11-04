@@ -36,6 +36,42 @@ export const CATEGORIES: Record<string, string> = {
   reviewing: 'Reviewing art',
 };
 
+// Default end-of-guide and sticky-bar CTA wording per guide audience.
+// Only promise what the app does for that reader (finders: it won't value
+// a painting they own).
+export const AUDIENCES: Record<string, { heading: string; body: string; sticky: string }> = {
+  travelers: {
+    heading: 'Take Opus on your next trip.',
+    body: 'Point your camera at a painting or sculpture and know what you’re looking at, then find what else is worth seeing nearby. We’re letting testers in now.',
+    sticky: 'Take Opus on your trip',
+  },
+  regulars: {
+    heading: 'Remember everything you see.',
+    body: 'Opus identifies works from a photo and keeps track of the museums you visit and the works you save, with badges along the way. We’re letting testers in now.',
+    sticky: 'Keep a record of the art you see',
+  },
+  students: {
+    heading: 'Identify any artwork from a photo.',
+    body: 'Opus recognizes paintings and sculpture from a photo and gives you the artist, the date and the museum that holds it. Free during testing.',
+    sticky: 'Identify art from a photo',
+  },
+  families: {
+    heading: 'Turn the next museum visit into a game.',
+    body: 'Photograph a work and Opus tells you what it is. Every find counts toward badges, so there’s always one more painting to look for. We’re letting testers in now.',
+    sticky: 'Make museum visits a game',
+  },
+  researchers: {
+    heading: `${STATS.works} works, in your pocket.`,
+    body: `Opus brings together works from ${STATS.museums} museums and collections, searchable by artist, museum or photo. We’re letting testers in now.`,
+    sticky: `Search ${STATS.works} artworks`,
+  },
+  finders: {
+    heading: 'Seeing art in a museum?',
+    body: 'Opus identifies works in museum and public collections from a photo. It won’t value a painting you own, but in a gallery it tells you exactly what you’re looking at.',
+    sticky: 'Identify museum art with your camera',
+  },
+};
+
 /** Prefix a site-absolute path with the deploy base. */
 export function url(path: string): string {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
