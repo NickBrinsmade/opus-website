@@ -1,0 +1,265 @@
+---
+import { allGuides } from '../lib/guides';
+import Base from '../layouts/Base.astro';
+import AccessForm from '../components/AccessForm.astro';
+import Phone from '../components/Phone.astro';
+import GuideCard from '../components/GuideCard.astro';
+import { SITE, STATS, url } from '../lib/site';
+
+const guides = (await allGuides())
+  .slice(0, 3);
+
+const faq = [
+  { q: 'Is Opus free?', a: 'Yes. Opus is free while we test it, and recognizing artworks will stay free.' },
+  { q: 'When can I use it?', a: 'We are inviting testers in small groups on iPhone (through TestFlight) and Android (through Google Play testing). Request access with your email and we will send an invite when a spot opens.' },
+  { q: 'What can it recognize?', a: `Paintings, drawings, prints, sculpture and museum objects. About ${STATS.recognizable} works can be matched from a photo today, out of ${STATS.works} works in the catalogue, and the number grows every week.` },
+  { q: 'What happens if it doesn’t recognize something?', a: 'You see the closest possibilities with a match score, and you can add the work yourself. We review every submission before it goes into the catalogue.' },
+  { q: 'Do I need to be in a museum?', a: 'No. It works on a painting in a gallery, a print in a book, or a picture on a screen.' },
+  { q: 'Which museums does it cover?', a: `Works from about ${STATS.museums} museums and collections worldwide, from the Louvre and the Met to small regional museums, plus ${STATS.exhibits} exhibitions.` },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+const appLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Opus',
+  applicationCategory: 'LifestyleApplication',
+  operatingSystem: 'iOS, Android',
+  description: SITE.description,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Base title={SITE.name} description={SITE.description} jsonLd={[appLd, faqLd]}>
+  <section class="hero ground">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="pill"><span class="dot"></span> Inviting testers now · iPhone &amp; Android</p>
+        <h1 class="display">Point your camera at any artwork. <em>Know it in seconds.</em></h1>
+        <p class="lede">
+          Opus recognizes paintings, sculpture and objects from a single photo, then tells you who made them,
+          where to see more, and what other visitors thought.
+        </p>
+        <AccessForm placement="home-hero" tone="dark" />
+      </div>
+      <div class="hero-phones" aria-label="Opus screens">
+        <Phone screen="camera" alt="Opus camera framing The Starry Night on a museum wall" width={250} eager class="hp1" />
+        <Phone screen="results" alt="Photo search results: The Starry Night by Vincent van Gogh, 91% match" width={250} eager class="hp2" />
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Opus in numbers">
+    <div class="wrap stats-row">
+      <div><strong>{STATS.works}+</strong><span>works catalogued</span></div>
+      <div><strong>{STATS.recognizable}</strong><span>recognizable by camera</span></div>
+      <div><strong>{STATS.artists}+</strong><span>artists</span></div>
+      <div><strong>{STATS.museums}+</strong><span>museums &amp; collections</span></div>
+    </div>
+  </section>
+
+  <section class="pillars wrap" aria-label="What Opus does">
+    <article>
+      <span class="dab" style="--c:var(--dab-red)"></span>
+      <h2>Recognize</h2>
+      <p>Snap the painting, the bust, the vase. Odd angle, busy gallery, it doesn’t matter: Opus finds the work.</p>
+    </article>
+    <article>
+      <span class="dab" style="--c:var(--dab-orange)"></span>
+      <h2>Remember</h2>
+      <p>Rate what you saw, write a line about it, and keep a record of every museum visit and every work that stopped you.</p>
+    </article>
+    <article>
+      <span class="dab" style="--c:var(--dab-green)"></span>
+      <h2>Explore</h2>
+      <p>See which museums are near you, what’s on now, which masterpieces hang inside, and where your friends have been.</p>
+    </article>
+  </section>
+
+  <section id="how" class="how">
+    <div class="wrap">
+      <p class="eyebrow center">How it works</p>
+      <h2 class="display center sect-title">Three seconds from “what is that?” to the whole story.</h2>
+      <ol class="steps">
+        <li>
+          <Phone screen="camera" alt="Framing a painting with the Opus camera" width={230} />
+          <span class="n">1</span>
+          <h3>Point</h3>
+          <p>Frame the work, at any angle. Gilt frames, glare and people walking past are fine.</p>
+        </li>
+        <li>
+          <Phone screen="results" alt="Opus showing the best match and other possibilities" width={230} />
+          <span class="n">2</span>
+          <h3>Match</h3>
+          <p>Opus searches {STATS.recognizable} artworks and shows the best match with an honest score, plus close alternatives.</p>
+        </li>
+        <li>
+          <Phone screen="work" alt="The Starry Night work page with artist, museum and reviews" width={230} />
+          <span class="n">3</span>
+          <h3>Go deeper</h3>
+          <p>The artist, the date, the medium, where it hangs, and what people who stood in front of it had to say.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="feature wrap">
+    <div class="f-copy">
+      <p class="eyebrow">Reviews</p>
+      <h2 class="display">Say what you actually thought.</h2>
+      <p>Star ratings and short reviews for individual works, not just museums. Reply to other visitors, follow people whose taste you trust, and see what’s trending this week.</p>
+      <a href={url('/guides/')}>Read our guides to looking at art →</a>
+    </div>
+    <Phone screen="review" alt="A five-star review of The Starry Night with replies" width={270} />
+  </section>
+
+  <section class="feature wrap flip">
+    <div class="f-copy">
+      <p class="eyebrow">Map</p>
+      <h2 class="display">Every museum around you, and what’s inside.</h2>
+      <p>Opus maps {STATS.museums} museums and collections. Tap one for directions, current exhibitions, closing dates, and the masterpieces it holds.</p>
+    </div>
+    <div class="pair">
+      <Phone screen="map" alt="Map of museums in Manhattan" width={230} />
+      <Phone screen="place" alt="Metropolitan Museum of Art card with exhibitions and masterpieces" width={230} />
+    </div>
+  </section>
+
+  <section class="feature wrap">
+    <div class="f-copy">
+      <p class="eyebrow">Your Curator</p>
+      <h2 class="display">A small companion who notices what you notice.</h2>
+      <p>Earn badges for visits and discoveries, from your first scan to a van Gogh seen in person, and dress your Curator in what you’ve unlocked.</p>
+    </div>
+    <Phone screen="badge" alt="New badge celebration with the Curator wearing a sunflower hat" width={270} />
+  </section>
+
+  <section class="honest">
+    <div class="measure">
+      <p class="eyebrow">Not sure?</p>
+      <h2 class="display">You see the match score, and the runners-up.</h2>
+      <p>
+        Opus never pretends. Every result shows how confident it is and the closest alternatives.
+        If the work isn’t in the catalogue yet, add it in a few taps and we’ll review it.
+      </p>
+      <a href={url('/guides/')}>Read our guides to identifying art →</a>
+    </div>
+  </section>
+
+  {guides.length > 0 && (
+    <section class="wrap latest">
+      <div class="latest-head">
+        <h2 class="display">Guides</h2>
+        <a href={url('/guides/')}>All guides →</a>
+      </div>
+      <div class="cards">{guides.map((g) => <GuideCard guide={g} />)}</div>
+    </section>
+  )}
+
+  <section class="faq measure" aria-labelledby="faq-title">
+    <h2 id="faq-title" class="display">Questions</h2>
+    {faq.map((f) => (
+      <details>
+        <summary>{f.q}</summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
+  </section>
+
+  <section class="final wrap">
+    <div class="final-box ground">
+      <h2 class="display">Be one of the first to try it.</h2>
+      <p>Tell us your email and your phone. We let testers in every week.</p>
+      <AccessForm placement="home-final" tone="dark" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 0; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; }
+  .hero-copy { padding-bottom: 88px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; margin: 0 0 22px; padding: 7px 14px;
+    border-radius: 999px; font: 500 13px/1 var(--sans); color: #f3e3cf;
+    background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(226, 190, 98, 0.35);
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--dab-green); box-shadow: 0 0 0 4px rgba(63, 164, 91, 0.25); }
+  h1 { font-size: clamp(40px, 6vw, 68px); margin: 0 0 22px; color: #fff; }
+  h1 em { font-style: italic; color: var(--gilt); }
+  .lede { font-size: 19px; color: #ead9c7; max-width: 34em; margin: 0 0 30px; }
+  .hero-phones { position: relative; height: 560px; }
+  :global(.hp1) { position: absolute; left: 4%; top: 40px; transform: rotate(-7deg); z-index: 1; }
+  :global(.hp2) { position: absolute; right: 2%; top: 0; transform: rotate(5deg); z-index: 2; }
+
+  .stats { border-bottom: 1px solid var(--rule); background: var(--paper-2); }
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); padding-top: 28px; padding-bottom: 28px; text-align: center; }
+  .stats strong { display: block; font: 500 30px/1.1 var(--display); }
+  .stats span { color: var(--ink-2); font-size: 14px; }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; padding-top: 80px; padding-bottom: 40px; }
+  .pillars h2 { font: 500 30px/1.1 var(--display); margin: 14px 0 10px; }
+  .pillars p { color: var(--ink-2); margin: 0; }
+  .dab { display: block; width: 34px; height: 26px; border-radius: 55% 45% 50% 50% / 60% 55% 45% 40%; background: var(--c); transform: rotate(-8deg); }
+
+  .center { text-align: center; }
+  .how { padding: 80px 0; }
+  .sect-title { font-size: clamp(30px, 4vw, 46px); max-width: 18em; margin: 12px auto 56px; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+  .steps li { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .n { margin-top: 26px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 600 14px var(--sans); color: #2a0d12; background: var(--gilt); }
+  .steps h3 { font: 500 26px/1.1 var(--display); margin: 10px 0 6px; }
+  .steps p { color: var(--ink-2); margin: 0; max-width: 28ch; }
+
+  .feature { display: grid; grid-template-columns: 1fr auto; gap: 64px; align-items: center; padding-top: 56px; padding-bottom: 56px; }
+  .feature.flip { grid-template-columns: auto 1fr; }
+  .feature.flip .f-copy { order: 2; }
+  .f-copy { max-width: 30em; }
+  .f-copy h2 { font-size: clamp(30px, 3.6vw, 44px); margin: 12px 0 14px; }
+  .f-copy p { color: var(--ink-2); font-size: 18px; }
+  .pair { display: flex; gap: 20px; }
+
+  .honest { margin: 56px 0; padding: 72px 0; background: var(--paper-2); border-block: 1px solid var(--rule); text-align: center; }
+  .honest h2 { font-size: clamp(30px, 4vw, 42px); margin: 12px 0 16px; }
+  .honest p { color: var(--ink-2); font-size: 18px; }
+
+  .latest { padding-top: 40px; }
+  .latest-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px; }
+  .latest-head h2 { font-size: 40px; margin: 0; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  .faq { padding-top: 88px; }
+  .faq h2 { font-size: 40px; margin: 0 0 20px; }
+  details { border-bottom: 1px solid var(--rule); padding: 18px 0; }
+  summary { cursor: pointer; font: 600 18px/1.4 var(--sans); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::after { content: '+'; color: var(--ink-3); font-weight: 400; font-size: 22px; line-height: 1; }
+  details[open] summary::after { content: '–'; }
+  summary::-webkit-details-marker { display: none; }
+  details p { color: var(--ink-2); margin: 10px 0 0; }
+
+  .final { padding-top: 88px; }
+  .final-box { border-radius: 26px; padding: 56px 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .final-box h2 { font-size: clamp(32px, 4.5vw, 48px); margin: 0 0 10px; color: #fff; }
+  .final-box p { color: #ead9c7; margin: 0 0 26px; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-copy { padding-bottom: 8px; }
+    .hero-phones { height: 420px; }
+    :global(.hp1), :global(.hp2) { width: 200px !important; }
+    :global(.hp1) { left: 8%; } :global(.hp2) { right: 8%; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .pillars, .steps, .cards { grid-template-columns: 1fr; }
+    .feature, .feature.flip { grid-template-columns: 1fr; justify-items: center; gap: 32px; }
+    .feature.flip .f-copy { order: 0; }
+  }
+  @media (max-width: 420px) {
+    .hero-phones { height: 360px; }
+    :global(.hp1), :global(.hp2) { width: 170px !important; }
+    :global(.hp1) { left: 0; } :global(.hp2) { right: 0; }
+    .pair :global(.phone) { width: 46% !important; }
+  }
+</style>

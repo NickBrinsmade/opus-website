@@ -1,0 +1,34 @@
+---
+// Mid-article CTA. Put it right after the section that answers the reader's
+// question (the quick answer), and where the article describes the exact
+// problem Opus solves. Headline should speak to that moment, not be generic.
+import AccessForm from './AccessForm.astro';
+import Phone from './Phone.astro';
+interface Props { placement?: string; heading: string; body: string; screen?: string; alt?: string }
+const { placement = 'guide-inline', heading, body, screen = 'results', alt = 'Opus photo search showing The Starry Night as the top match' } = Astro.props;
+---
+<aside class="inline-cta not-prose" aria-label="Try Opus">
+  <div class="copy">
+    <p class="eyebrow">Opus · early access</p>
+    <p class="h">{heading}</p>
+    <p class="b">{body}</p>
+    <AccessForm placement={placement} button="Get an invite" />
+  </div>
+  <Phone screen={screen} alt={alt} width={150} class="mini" />
+</aside>
+<style>
+  .inline-cta {
+    display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+    margin: 40px 0; padding: 26px 26px 22px; border-radius: var(--radius);
+    background: var(--card); border: 1px solid var(--rule);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 20px 40px -32px rgba(58, 18, 25, 0.5);
+    position: relative; overflow: hidden;
+  }
+  .inline-cta::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 4px; background: linear-gradient(var(--gilt), var(--oxblood)); }
+  .eyebrow { margin: 0 0 8px; color: var(--oxblood); }
+  @media (prefers-color-scheme: dark) { .eyebrow { color: var(--gilt); } }
+  .h { margin: 0 0 6px; font: 500 24px/1.15 var(--display); }
+  .b { margin: 0 0 16px; color: var(--ink-2); font: 400 16px/1.5 var(--sans); }
+  :global(.inline-cta .mini) { transform: rotate(3deg); margin-right: 4px; }
+  @media (max-width: 640px) { .inline-cta { grid-template-columns: 1fr; } :global(.inline-cta .mini) { display: none; } }
+</style>

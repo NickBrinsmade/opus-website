@@ -1,0 +1,32 @@
+---
+import Wordmark from './Wordmark.astro';
+import { url } from '../lib/site';
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <Wordmark />
+    <nav aria-label="Main">
+      <a href={url('/#how')}>How it works</a>
+      <a href={url('/guides/')}>Guides</a>
+      <a class="btn btn-gilt sm" href={url('/access/?src=header')} data-cta="header">Request access</a>
+    </nav>
+  </div>
+</header>
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in srgb, var(--paper) 86%, transparent);
+    backdrop-filter: saturate(1.4) blur(14px);
+    -webkit-backdrop-filter: saturate(1.4) blur(14px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  nav { display: flex; align-items: center; gap: 22px; }
+  nav a:not(.btn) { color: var(--ink-2); text-decoration: none; font: 500 15px/1 var(--sans); }
+  nav a:not(.btn):hover { color: var(--ink); }
+  .sm { min-height: 38px; padding: 0 16px; font-size: 14px; }
+  @media (max-width: 640px) {
+    nav a:not(.btn) { display: none; }
+    nav a[href$='/guides/'] { display: inline; }
+  }
+</style>

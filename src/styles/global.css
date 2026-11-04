@@ -1,0 +1,116 @@
+/* Brand tokens come from the app (project brand identity, 2026-10-29):
+   oxblood ground #7A2A35 → #3A1219, gilt #E2BE62, splash #521B24,
+   paint dabs #E5483B #F2A13A #3FA45B #3E6FD8, wordmark Bodoni Moda 500. */
+
+:root {
+  --oxblood: #7a2a35;
+  --oxblood-deep: #3a1219;
+  --oxblood-mid: #521b24;
+  --gilt: #e2be62;
+  --gilt-deep: #b8913a;
+  --dab-red: #e5483b;
+  --dab-orange: #f2a13a;
+  --dab-green: #3fa45b;
+  --dab-blue: #3e6fd8;
+
+  --paper: #f7f3ec;
+  --paper-2: #efe8dc;
+  --card: #fffdf9;
+  --ink: #1f1a17;
+  --ink-2: #5b524b;
+  --ink-3: #8a8078;
+  --rule: #e2d9cb;
+  --link: #8a2f3c;
+  --focus: #3e6fd8;
+
+  --display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --serif: 'Source Serif 4 Variable', Georgia, serif;
+  --sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --wrap: 1120px;
+  --measure: 680px;
+  --radius: 14px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #16110f;
+    --paper-2: #1f1815;
+    --card: #221a17;
+    --ink: #efe8de;
+    --ink-2: #b9aea3;
+    --ink-3: #887d73;
+    --rule: #3a2e29;
+    --link: #e9c977;
+    --focus: #7fa6e8;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+::selection { background: color-mix(in srgb, var(--gilt) 45%, transparent); }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+.measure { max-width: var(--measure); margin: 0 auto; padding: 0 20px; }
+
+.eyebrow {
+  font: 600 12px/1 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.display {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 0 22px;
+  border-radius: 999px; border: 0;
+  font: 600 16px/1 var(--sans); text-decoration: none; cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-gilt {
+  color: #2a0d12;
+  background: linear-gradient(180deg, #f0d78f, var(--gilt) 55%, var(--gilt-deep));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 6px 20px -8px rgba(184, 145, 58, 0.7);
+}
+.btn-gilt:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 10px 26px -8px rgba(184, 145, 58, 0.9); }
+.btn-ghost { color: inherit; background: transparent; box-shadow: inset 0 0 0 1px currentColor; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* The oxblood ground used for hero bands and CTAs. */
+.ground {
+  color: #f6ecdf;
+  background:
+    radial-gradient(120% 80% at 80% 0%, rgba(226, 190, 98, 0.12), transparent 60%),
+    linear-gradient(160deg, var(--oxblood), var(--oxblood-deep));
+}
+.ground a:not(.btn) { color: var(--gilt); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

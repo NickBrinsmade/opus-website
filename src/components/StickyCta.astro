@@ -1,0 +1,50 @@
+---
+// Slim mobile bar. Appears after the reader passes the first inline CTA,
+// hides whenever another CTA is on screen, and stays gone once dismissed.
+import { url } from '../lib/site';
+interface Props { slug: string }
+const { slug } = Astro.props;
+---
+<div class="sticky-cta" data-sticky-cta hidden>
+  <span>Identify art with your camera</span>
+  <a class="btn btn-gilt" href={url(`/access/?src=${slug}`)} data-cta="guide-sticky">Get an invite</a>
+  <button type="button" aria-label="Dismiss" data-dismiss>×</button>
+</div>
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-sticky-cta]');
+  const KEY = 'opus-sticky-dismissed';
+  let dismissed = false;
+  try { dismissed = sessionStorage.getItem(KEY) === '1'; } catch {}
+  if (bar && !dismissed && matchMedia('(max-width: 760px)').matches) {
+    const others = [...document.querySelectorAll('.inline-cta, .end-cta')];
+    const first = others[0];
+    const visible = new Set<Element>();
+    let passedFirst = !first;
+    const update = () => { bar.hidden = dismissed || !passedFirst || visible.size > 0; };
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) {
+        e.isIntersecting ? visible.add(e.target) : visible.delete(e.target);
+        if (e.target === first && !e.isIntersecting && e.boundingClientRect.top < 0) passedFirst = true;
+      }
+      update();
+    });
+    others.forEach((o) => io.observe(o));
+    bar.querySelector('[data-dismiss]')?.addEventListener('click', () => {
+      dismissed = true; update();
+      try { sessionStorage.setItem(KEY, '1'); } catch {}
+    });
+  }
+</script>
+<style>
+  .sticky-cta {
+    position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 50;
+    display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 16px;
+    border-radius: 999px; color: #f6ecdf;
+    background: linear-gradient(160deg, var(--oxblood), var(--oxblood-deep));
+    box-shadow: 0 16px 40px -12px rgba(30, 6, 10, 0.6);
+  }
+  .sticky-cta[hidden] { display: none; }
+  .sticky-cta span { flex: 1; font: 600 14px/1.2 var(--sans); }
+  .sticky-cta .btn { min-height: 40px; padding: 0 16px; font-size: 14px; }
+  .sticky-cta button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: rgba(255,255,255,0.12); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; }
+</style>

@@ -1,0 +1,43 @@
+---
+import Wordmark from './Wordmark.astro';
+import { url, SITE, CATEGORIES } from '../lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer ground">
+  <div class="wrap cols">
+    <div class="brand">
+      <Wordmark size={34} />
+      <p>{SITE.tagline}</p>
+      <a class="btn btn-gilt" href={url('/access/?src=footer')} data-cta="footer">Request early access</a>
+    </div>
+    <div>
+      <p class="eyebrow">Guides</p>
+      <ul>
+        {Object.entries(CATEGORIES).map(([k, v]) => <li><a href={url(`/guides/#${k}`)}>{v}</a></li>)}
+        <li><a href={url('/guides/')}>All guides</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">Opus</p>
+      <ul>
+        <li><a href={url('/#how')}>How it works</a></li>
+        <li><a href={url('/access/')}>Request access</a></li>
+        <li><a href={url('/merge-artists/')}>Help merge artists</a></li>
+        <li><a href={url('/privacy/')}>Privacy</a></li>
+        <li><a href={`mailto:${SITE.email}`}>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">© {year} Opus. Artwork images are public domain or shown with credit.</div>
+</footer>
+<style>
+  .site-footer { padding: 64px 0 28px; margin-top: 96px; }
+  .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+  .brand p { color: #e3d3c2; max-width: 30ch; margin: 16px 0 22px; }
+  .eyebrow { color: #c9ab78; margin: 6px 0 14px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  li a { color: #f1e6d8 !important; text-decoration: none; }
+  li a:hover { text-decoration: underline; }
+  .legal { margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.12); color: #bfa996; font-size: 13px; }
+  @media (max-width: 760px) { .cols { grid-template-columns: 1fr 1fr; } .brand { grid-column: 1 / -1; } }
+</style>

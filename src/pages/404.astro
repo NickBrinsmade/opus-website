@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/site';
+---
+<Base title="Page not found" description="This page doesn’t exist." noindex>
+  <section class="measure nf">
+    <p class="eyebrow">404</p>
+    <h1 class="display">This frame is empty.</h1>
+    <p>The page you were looking for has moved or never existed.</p>
+    <p><a class="btn btn-gilt" href={url('/')}>Go home</a> <a class="btn btn-ghost" href={url('/guides/')}>Browse guides</a></p>
+  </section>
+</Base>
+<style>
+  .nf { padding: 120px 20px 40px; text-align: center; }
+  h1 { font-size: 56px; margin: 10px 0 12px; }
+  p { color: var(--ink-2); }
+</style>

@@ -1,0 +1,14 @@
+---
+import { url } from '../lib/site';
+interface Props { size?: number }
+const { size = 30 } = Astro.props;
+---
+<a class="wordmark" href={url('/')} aria-label="Opus home">
+  <img src={url('/img/icon-512.png')} width={size} height={size} alt="" />
+  <span>OPUS</span>
+</a>
+<style>
+  .wordmark { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+  .wordmark img { border-radius: 22%; }
+  .wordmark span { font: 500 19px/1 var(--display); letter-spacing: 0.3em; margin-right: -0.3em; }
+</style>

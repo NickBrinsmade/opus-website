@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import InlineCta from '../../components/InlineCta.astro';
+import { allGuides } from '../../lib/guides';
+import { CATEGORIES, url } from '../../lib/site';
+
+const guides = await allGuides();
+const groups = Object.entries(CATEGORIES)
+  .map(([key, label]) => ({ key, label, items: guides.filter((g) => g.data.category === key) }))
+  .filter((g) => g.items.length);
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: guides.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: new URL(url(`/guides/${g.id}/`), Astro.site).href, name: g.data.title })),
+};
+---
+<Base title="Guides to identifying, reviewing and researching art" description="Practical guides to recognizing artworks from a photo, getting more out of museum visits, researching art history, and writing about what you see." jsonLd={[itemList]}>
+  <header class="head wrap">
+    <p class="eyebrow">Guides</p>
+    <h1 class="display">Look closer.</h1>
+    <p class="lede">Practical guides to identifying artworks, getting more from museum visits, researching what you’ve seen, and writing about it.</p>
+  </header>
+  {groups.length === 0 && <p class="wrap empty">The first guides are on their way.</p>}
+  {groups.map((g) => (
+    <section class="wrap group" id={g.key}>
+      <h2 class="display">{g.label}</h2>
+      <div class="cards">{g.items.map((guide) => <GuideCard guide={guide} />)}</div>
+    </section>
+  ))}
+  <div class="measure">
+    <InlineCta placement="guides-index" heading="Identify art with your camera" body="Opus recognizes paintings, sculpture and objects from a photo. We’re inviting testers now." />
+  </div>
+</Base>
+<style>
+  .head { padding-top: 72px; padding-bottom: 24px; }
+  h1 { font-size: clamp(44px, 7vw, 76px); margin: 10px 0 14px; }
+  .lede { font-size: 19px; color: var(--ink-2); max-width: 36em; margin: 0; }
+  .group { padding-top: 48px; scroll-margin-top: 80px; }
+  .group h2 { font-size: 30px; margin: 0 0 20px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .empty { color: var(--ink-2); padding-top: 24px; }
+  @media (max-width: 900px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
+</style>

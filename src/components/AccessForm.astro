@@ -1,0 +1,53 @@
+---
+// One request-access form. `placement` names where on the page it sits, so
+// signups can be credited to a spot (hero, guide-inline, guide-end, ...).
+interface Props { placement: string; tone?: 'light' | 'dark'; button?: string }
+const { placement, tone = 'light', button = 'Request access' } = Astro.props;
+const id = `f-${placement}`;
+---
+<form class:list={['access', tone]} data-access-form data-placement={placement} data-cta={placement} novalidate>
+  <div class="row">
+    <label class="sr-only" for={`${id}-email`}>Email</label>
+    <input id={`${id}-email`} name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required />
+    <fieldset class="seg">
+      <legend class="sr-only">Your phone</legend>
+      <label><input type="radio" name="platform" value="ios" /><span>iPhone</span></label>
+      <label><input type="radio" name="platform" value="android" /><span>Android</span></label>
+    </fieldset>
+    <button class="btn btn-gilt" type="submit">{button}</button>
+  </div>
+  <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off" /></label>
+  <p class="status" data-status role="status" aria-live="polite"></p>
+  <p class="fine">Free during testing. We only email you about your invite. <a href={`${import.meta.env.BASE_URL}privacy/`}>Privacy</a></p>
+</form>
+<style>
+  .access { width: 100%; max-width: 620px; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .row .btn { flex: 1 1 auto; }
+  input[type=email] {
+    flex: 1 1 100%; min-width: 0; min-height: 48px; padding: 0 18px;
+    border-radius: 999px; font: 400 16px var(--sans);
+    border: 1px solid var(--rule); background: var(--card); color: var(--ink);
+  }
+  .dark input[type=email] { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.22); color: #fff; }
+  .dark input::placeholder { color: rgba(255, 255, 255, 0.55); }
+  .seg { display: flex; margin: 0; padding: 3px; border: 1px solid var(--rule); border-radius: 999px; background: var(--card); }
+  .dark .seg { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.22); }
+  .seg label { position: relative; }
+  .seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .seg span { display: block; padding: 11px 14px; border-radius: 999px; font: 500 14px/1 var(--sans); color: var(--ink-2); }
+  .dark .seg span { color: rgba(255, 255, 255, 0.75); }
+  .seg input:checked + span { background: var(--oxblood); color: #fff; }
+  .dark .seg input:checked + span { background: var(--gilt); color: #2a0d12; }
+  .seg input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 1px; }
+  .hp { position: absolute; left: -9999px; }
+  .status { min-height: 0; margin: 10px 4px 0; font-size: 15px; }
+  .status:empty { display: none; }
+  .status[data-kind=error] { color: var(--dab-red); }
+  .dark .status[data-kind=error] { color: #ffb3a8; }
+  .status[data-kind=ok] { font-weight: 600; }
+  .fine { margin: 10px 4px 0; font-size: 13px; color: var(--ink-3); }
+  .dark .fine { color: rgba(255, 255, 255, 0.6); }
+  .done .row, .done .fine { display: none; }
+  @media (max-width: 520px) { .seg { flex: 1 1 auto; } .seg label { flex: 1; text-align: center; } .row .btn { flex: 1 1 100%; } }
+</style>
