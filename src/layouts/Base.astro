@@ -5,6 +5,10 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/source-serif-4';
 import '@fontsource-variable/source-serif-4/wght-italic.css';
 import '../styles/global.css';
+// Preloaded so the headline and hero copy don't reflow when fonts swap in (CLS).
+import bodoni500 from '@fontsource/bodoni-moda/files/bodoni-moda-latin-500-normal.woff2?url';
+import bodoni500i from '@fontsource/bodoni-moda/files/bodoni-moda-latin-500-italic.woff2?url';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, url, POSTHOG_KEY, POSTHOG_HOST, CF_BEACON_TOKEN } from '../lib/site';
@@ -35,6 +39,7 @@ const org = {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{fullTitle}</title>
+  {[bodoni500, bodoni500i, interLatin].map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   {noindex && <meta name="robots" content="noindex" />}
