@@ -1,0 +1,96 @@
+{
+  "artist": "Vincent van Gogh",
+  "checked": "2026-11-05",
+  "complete": false,
+  "cities": [
+    { "city": "Amsterdam", "country": "Netherlands", "museums": [
+      { "name": "Van Gogh Museum", "url": "https://www.vangoghmuseum.nl/en", "countLabel": "more than 200 paintings", "note": "The largest Van Gogh collection anywhere, built from the family’s own holdings. Timed tickets only; book ahead.", "works": [
+        { "title": "The Potato Eaters", "year": "1885" },
+        { "title": "Skull of a Skeleton with Burning Cigarette", "year": "1886" },
+        { "title": "Self-Portrait as a Painter", "year": "1887–88" },
+        { "title": "The Yellow House", "year": "1888" },
+        { "title": "The Bedroom", "year": "1888", "note": "The first of three versions." },
+        { "title": "Sunflowers", "year": "1889" },
+        { "title": "Almond Blossom", "year": "1890" },
+        { "title": "Wheatfield with Crows", "year": "1890" } ] },
+      { "name": "Rijksmuseum", "url": "https://www.rijksmuseum.nl/en", "works": [
+        { "title": "Self-Portrait", "year": "1887" } ] } ] },
+    { "city": "Otterlo", "country": "Netherlands", "museums": [
+      { "name": "Kröller-Müller Museum", "url": "https://krollermuller.nl/en", "countLabel": "88 paintings", "note": "The second-largest collection, inside De Hoge Veluwe National Park, about an hour’s drive from Amsterdam (longer by public transport). All 88 paintings are on show together until January 3, 2027, for the first time since 1984.", "works": [
+        { "title": "Four Cut Sunflowers", "year": "1887" },
+        { "title": "Café Terrace at Night", "year": "1888" },
+        { "title": "The Langlois Bridge", "year": "1888" },
+        { "title": "Road with Cypress and Star", "year": "1890" },
+        { "title": "At Eternity’s Gate (Sorrowing Old Man)", "year": "1890" } ] } ] },
+    { "city": "Paris", "country": "France", "museums": [
+      { "name": "Musée d’Orsay", "url": "https://www.musee-orsay.fr/en", "works": [
+        { "title": "Starry Night Over the Rhône", "year": "1888" },
+        { "title": "The Bedroom", "year": "1889" },
+        { "title": "Self-Portrait", "year": "1889" },
+        { "title": "Portrait of Dr Gachet", "year": "1890", "note": "The second version; the first is in a private collection." },
+        { "title": "The Church at Auvers", "year": "1890" } ] },
+      { "name": "Musée Rodin", "url": "https://www.musee-rodin.fr/en", "works": [
+        { "title": "Portrait of Père Tanguy", "year": "1887" } ] } ] },
+    { "city": "New York", "country": "USA", "museums": [
+      { "name": "Museum of Modern Art", "url": "https://www.moma.org/", "works": [
+        { "title": "The Starry Night", "year": "1889" },
+        { "title": "The Olive Trees", "year": "1889" } ] },
+      { "name": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/", "works": [
+        { "title": "Sunflowers", "year": "1887", "note": "An earlier, Paris-period still life, not one of the famous vases." },
+        { "title": "Self-Portrait with a Straw Hat", "year": "1887" },
+        { "title": "L’Arlésienne: Madame Joseph-Michel Ginoux", "year": "1888–89" },
+        { "title": "Wheat Field with Cypresses", "year": "1889" },
+        { "title": "Irises", "year": "1890" } ] },
+      { "name": "Solomon R. Guggenheim Museum", "url": "https://www.guggenheim.org/", "works": [
+        { "title": "Landscape with Snow", "year": "1888" },
+        { "title": "Mountains at Saint-Rémy", "year": "1889" } ] } ] },
+    { "city": "London", "country": "UK", "museums": [
+      { "name": "The National Gallery", "url": "https://www.nationalgallery.org.uk/", "note": "Free entry.", "works": [
+        { "title": "Sunflowers", "year": "1888" },
+        { "title": "Van Gogh’s Chair", "year": "1888" },
+        { "title": "A Wheatfield, with Cypresses", "year": "1889" },
+        { "title": "Long Grass with Butterflies", "year": "1890" } ] },
+      { "name": "The Courtauld Gallery", "url": "https://courtauld.ac.uk/gallery/", "works": [
+        { "title": "Peach Trees in Blossom", "year": "1889" },
+        { "title": "Self-Portrait with Bandaged Ear", "year": "1889" } ] } ] },
+    { "city": "Washington, D.C.", "country": "USA", "museums": [
+      { "name": "National Gallery of Art", "url": "https://www.nga.gov/", "note": "Free entry.", "works": [
+        { "title": "La Mousmé", "year": "1888" },
+        { "title": "Farmhouse in Provence", "year": "1888" },
+        { "title": "Self-Portrait", "year": "1889" },
+        { "title": "Roses", "year": "1890" } ] } ] },
+    { "city": "Chicago", "country": "USA", "museums": [
+      { "name": "Art Institute of Chicago", "url": "https://www.artic.edu/", "works": [
+        { "title": "Self-Portrait", "year": "1887" },
+        { "title": "The Poet’s Garden", "year": "1888" },
+        { "title": "The Bedroom", "year": "1889" } ] } ] },
+    { "city": "Philadelphia", "country": "USA", "museums": [
+      { "name": "Philadelphia Museum of Art", "url": "https://philamuseum.org/", "works": [
+        { "title": "Sunflowers", "year": "1889" } ] },
+      { "name": "Barnes Foundation", "url": "https://www.barnesfoundation.org/", "works": [
+        { "title": "The Postman (Joseph-Étienne Roulin)", "year": "1889" } ] } ] },
+    { "city": "Los Angeles", "country": "USA", "museums": [
+      { "name": "J. Paul Getty Museum", "url": "https://www.getty.edu/", "note": "Free entry (parking is paid).", "works": [
+        { "title": "Irises", "year": "1889" } ] },
+      { "name": "Norton Simon Museum (Pasadena)", "url": "https://www.nortonsimon.org/", "works": [
+        { "title": "Portrait of the Artist’s Mother", "year": "1888" } ] } ] },
+    { "city": "Boston", "country": "USA", "museums": [
+      { "name": "Museum of Fine Arts, Boston", "url": "https://www.mfa.org/", "works": [
+        { "title": "Postman Joseph Roulin", "year": "1888" },
+        { "title": "Houses at Auvers", "year": "1890" } ] } ] },
+    { "city": "New Haven", "country": "USA", "museums": [
+      { "name": "Yale University Art Gallery", "url": "https://artgallery.yale.edu/", "note": "Free entry.", "works": [
+        { "title": "The Night Café", "year": "1888" } ] } ] },
+    { "city": "Munich", "country": "Germany", "museums": [
+      { "name": "Alte Pinakothek (Neue Pinakothek collection)", "url": "https://www.pinakothek.de/en", "note": "The Neue Pinakothek is closed for renovation until about 2029. Its highlights hang in the Alte Pinakothek through December 31, 2026.", "works": [
+        { "title": "Sunflowers", "year": "1888" },
+        { "title": "View of Arles, Flowering Orchards", "year": "1889" } ] } ] },
+    { "city": "Tokyo", "country": "Japan", "museums": [
+      { "name": "SOMPO Museum of Art", "url": "https://www.sompo-museum.org/en/", "works": [
+        { "title": "Sunflowers", "year": "1888" } ] } ] },
+    { "city": "Moscow", "country": "Russia", "museums": [
+      { "name": "Pushkin State Museum of Fine Arts", "url": "https://pushkinmuseum.art/", "works": [
+        { "title": "The Red Vineyard", "year": "1888" },
+        { "title": "Prisoners Exercising", "year": "1890" } ] } ] }
+  ]
+}

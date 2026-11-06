@@ -1,0 +1,66 @@
+{
+  "artist": "Sandro Botticelli",
+  "checked": "2026-11-05",
+  "complete": false,
+  "cities": [
+    { "city": "Florence", "country": "Italy", "museums": [
+      { "name": "Uffizi Gallery", "url": "https://www.uffizi.it/en", "countLabel": "the world’s largest Botticelli collection", "note": "The Botticelli rooms are the Uffizi’s busiest. Book a timed ticket and go at opening or in the last two hours.", "works": [
+        { "title": "Adoration of the Magi", "year": "c. 1475", "note": "Botticelli is the figure in the yellow cloak on the right, looking out at you." },
+        { "title": "Primavera", "year": "c. 1480" },
+        { "title": "Pallas and the Centaur", "year": "c. 1482" },
+        { "title": "Madonna of the Magnificat", "year": "c. 1483" },
+        { "title": "The Birth of Venus", "year": "c. 1485" },
+        { "title": "Madonna of the Pomegranate", "year": "c. 1487" },
+        { "title": "Cestello Annunciation", "year": "1489–90" },
+        { "title": "Calumny of Apelles", "year": "c. 1494–95" } ] },
+      { "name": "Church of Ognissanti", "note": "Free. Botticelli is buried here.", "works": [
+        { "title": "Saint Augustine in His Study", "year": "1480", "note": "A fresco, painted opposite Ghirlandaio’s Saint Jerome." } ] } ] },
+    { "city": "Vatican City", "country": "Rome", "museums": [
+      { "name": "Sistine Chapel (Vatican Museums)", "url": "https://www.museivaticani.va/", "note": "On the side walls, below Michelangelo’s ceiling. Most visitors look straight up and miss them.", "works": [
+        { "title": "The Trials of Moses", "year": "1481–82" },
+        { "title": "The Temptations of Christ", "year": "1481–82" },
+        { "title": "The Punishment of the Sons of Korah", "year": "1481–82" } ] } ] },
+    { "city": "London", "country": "UK", "museums": [
+      { "name": "The National Gallery", "url": "https://www.nationalgallery.org.uk/", "note": "Free entry.", "works": [
+        { "title": "Venus and Mars", "year": "c. 1485" },
+        { "title": "Portrait of a Young Man", "year": "c. 1480–85" },
+        { "title": "Mystic Nativity", "year": "1500", "note": "His only signed and dated painting." } ] },
+      { "name": "The Courtauld Gallery", "url": "https://courtauld.ac.uk/gallery/", "works": [
+        { "title": "The Holy Trinity with Saints John the Baptist and Mary Magdalene", "year": "c. 1491–94" } ] },
+      { "name": "Victoria and Albert Museum", "url": "https://www.vam.ac.uk/", "note": "Free entry.", "works": [
+        { "title": "Portrait of a Lady known as Smeralda Brandini", "year": "c. 1470–75" } ] } ] },
+    { "city": "Berlin", "country": "Germany", "museums": [
+      { "name": "Gemäldegalerie", "url": "https://www.smb.museum/en/museums-institutions/gemaeldegalerie/", "works": [
+        { "title": "Saint Sebastian", "year": "1474" },
+        { "title": "Portrait of Giuliano de’ Medici", "year": "c. 1478" },
+        { "title": "Madonna and Child with Saints (Bardi Altarpiece)", "year": "1485" } ] } ] },
+    { "city": "Milan and Bergamo", "country": "Italy", "museums": [
+      { "name": "Museo Poldi Pezzoli, Milan", "url": "https://museopoldipezzoli.it/en/", "works": [
+        { "title": "Madonna of the Book", "year": "c. 1480–83" },
+        { "title": "Lamentation over the Dead Christ", "year": "c. 1495" } ] },
+      { "name": "Accademia Carrara, Bergamo", "url": "https://www.lacarrara.it/en/", "works": [
+        { "title": "Portrait of Giuliano de’ Medici", "year": "c. 1478–80" },
+        { "title": "The Story of Virginia", "year": "c. 1500" } ] } ] },
+    { "city": "Paris", "country": "France", "museums": [
+      { "name": "Musée du Louvre", "url": "https://www.louvre.fr/en", "works": [
+        { "title": "Frescoes from the Villa Lemmi", "year": "c. 1483–85", "note": "Venus and the Three Graces and its companion, removed from a villa near Florence in the 19th century." } ] } ] },
+    { "city": "Madrid", "country": "Spain", "museums": [
+      { "name": "Museo del Prado", "url": "https://www.museodelprado.es/en", "works": [
+        { "title": "The Story of Nastagio degli Onesti", "year": "1483", "note": "Three panels from a series of four, telling a darkly violent story from Boccaccio." } ] } ] },
+    { "city": "Frankfurt and Munich", "country": "Germany", "museums": [
+      { "name": "Städel Museum, Frankfurt", "url": "https://www.staedelmuseum.de/en", "works": [
+        { "title": "Idealized Portrait of a Lady", "year": "c. 1480" } ] },
+      { "name": "Alte Pinakothek, Munich", "url": "https://www.pinakothek.de/en", "works": [
+        { "title": "Lamentation over the Dead Christ", "year": "c. 1490" } ] } ] },
+    { "city": "United States", "country": "Washington, Boston, New York", "museums": [
+      { "name": "National Gallery of Art, Washington", "url": "https://www.nga.gov/", "note": "Free entry.", "works": [
+        { "title": "Giuliano de’ Medici", "year": "c. 1478–80" },
+        { "title": "The Adoration of the Magi", "year": "early 1480s" } ] },
+      { "name": "Isabella Stewart Gardner Museum, Boston", "url": "https://www.gardnermuseum.org/", "works": [
+        { "title": "Virgin and Child with an Angel", "year": "c. 1470–74" },
+        { "title": "The Story of Lucretia", "year": "c. 1499–1500" } ] },
+      { "name": "The Metropolitan Museum of Art, New York", "url": "https://www.metmuseum.org/", "works": [
+        { "title": "The Annunciation", "year": "c. 1485" },
+        { "title": "The Last Communion of Saint Jerome", "year": "early 1490s" } ] } ] }
+  ]
+}

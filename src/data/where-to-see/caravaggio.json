@@ -1,0 +1,105 @@
+{
+  "artist": "Caravaggio",
+  "checked": "2026-11-05",
+  "complete": false,
+  "cities": [
+    { "city": "Rome", "country": "Italy", "museums": [
+      { "name": "San Luigi dei Francesi (Contarelli Chapel)", "note": "A working church, free to enter. Mind the Mass times.", "works": [
+        { "title": "The Calling of Saint Matthew", "year": "1599–1600" },
+        { "title": "The Martyrdom of Saint Matthew", "year": "1599–1600" },
+        { "title": "The Inspiration of Saint Matthew", "year": "1602" } ] },
+      { "name": "Santa Maria del Popolo (Cerasi Chapel)", "note": "Free to enter.", "works": [
+        { "title": "The Conversion of Saint Paul", "year": "1600–01" },
+        { "title": "The Crucifixion of Saint Peter", "year": "1600–01" } ] },
+      { "name": "Sant’Agostino", "note": "Free to enter. Five minutes’ walk from San Luigi.", "works": [
+        { "title": "Madonna di Loreto (Pilgrims’ Madonna)", "year": "c. 1604–06" } ] },
+      { "name": "Galleria Borghese", "url": "https://galleriaborghese.beniculturali.it/en/", "note": "Timed entry, booking required.", "works": [
+        { "title": "Boy with a Basket of Fruit", "year": "c. 1593" },
+        { "title": "Young Sick Bacchus", "year": "c. 1593" },
+        { "title": "Madonna and Child with Saint Anne (Madonna dei Palafrenieri)", "year": "1605–06" },
+        { "title": "Saint Jerome Writing", "year": "c. 1605–06" },
+        { "title": "Saint John the Baptist", "year": "c. 1610" },
+        { "title": "David with the Head of Goliath", "year": "c. 1610", "note": "Goliath’s severed head is thought to be a self-portrait." } ] },
+      { "name": "Gallerie Nazionali di Arte Antica (Palazzo Barberini)", "url": "https://www.barberinicorsini.org/en/", "works": [
+        { "title": "Narcissus", "year": "c. 1597–99" },
+        { "title": "Judith Beheading Holofernes", "year": "c. 1599" } ] },
+      { "name": "Galleria Doria Pamphilj", "url": "https://www.doriapamphilj.it/en/", "works": [
+        { "title": "Penitent Magdalene", "year": "c. 1594–96" },
+        { "title": "Rest on the Flight into Egypt", "year": "c. 1597" } ] },
+      { "name": "Capitoline Museums", "url": "https://www.museicapitolini.org/en", "works": [
+        { "title": "The Fortune Teller", "year": "c. 1594" },
+        { "title": "Saint John the Baptist (Youth with a Ram)", "year": "1602" } ] },
+      { "name": "Vatican Museums (Pinacoteca)", "url": "https://www.museivaticani.va/", "works": [
+        { "title": "The Entombment of Christ", "year": "1603–04" } ] } ] },
+    { "city": "Naples", "country": "Italy", "museums": [
+      { "name": "Pio Monte della Misericordia", "url": "https://www.piomontedellamisericordia.it/", "note": "Still above the altar it was painted for.", "works": [
+        { "title": "The Seven Works of Mercy", "year": "1607" } ] },
+      { "name": "Museo di Capodimonte", "url": "https://capodimonte.cultura.gov.it/", "works": [
+        { "title": "The Flagellation of Christ", "year": "1607" } ] },
+      { "name": "Gallerie d’Italia", "url": "https://gallerieditalia.com/en/napoli/", "works": [
+        { "title": "The Martyrdom of Saint Ursula", "year": "1610", "note": "Probably his last painting, finished weeks before he died." } ] } ] },
+    { "city": "Florence", "country": "Italy", "museums": [
+      { "name": "Uffizi Gallery", "url": "https://www.uffizi.it/en", "works": [
+        { "title": "Bacchus", "year": "c. 1596" },
+        { "title": "Medusa", "year": "c. 1597", "note": "Painted on a ceremonial shield." },
+        { "title": "The Sacrifice of Isaac", "year": "c. 1603" } ] },
+      { "name": "Palazzo Pitti (Palatine Gallery)", "url": "https://www.uffizi.it/en/pitti-palace", "works": [
+        { "title": "Portrait of Fra Antonio Martelli", "year": "c. 1607–08" },
+        { "title": "Sleeping Cupid", "year": "1608" } ] } ] },
+    { "city": "Milan", "country": "Italy", "museums": [
+      { "name": "Pinacoteca Ambrosiana", "url": "https://www.ambrosiana.it/en/", "works": [
+        { "title": "Basket of Fruit", "year": "c. 1597–1600" } ] },
+      { "name": "Pinacoteca di Brera", "url": "https://pinacotecabrera.org/en/", "works": [
+        { "title": "Supper at Emmaus", "year": "1606" } ] } ] },
+    { "city": "Valletta", "country": "Malta", "museums": [
+      { "name": "St John’s Co-Cathedral", "url": "https://www.stjohnscocathedral.com/", "works": [
+        { "title": "The Beheading of Saint John the Baptist", "year": "1608", "note": "His largest painting, and the only one he signed." },
+        { "title": "Saint Jerome Writing", "year": "1607–08" } ] } ] },
+    { "city": "Messina and Syracuse", "country": "Sicily", "museums": [
+      { "name": "Museo Regionale di Messina", "url": "https://www.regione.sicilia.it/", "works": [
+        { "title": "The Raising of Lazarus", "year": "1609" },
+        { "title": "The Adoration of the Shepherds", "year": "1609" } ] },
+      { "name": "Syracuse (church of Santa Lucia)", "works": [
+        { "title": "The Burial of Saint Lucy", "year": "1608", "tag": "limited", "note": "Its home in the city has changed more than once; check where it’s shown before you go." } ] } ] },
+    { "city": "London", "country": "UK", "museums": [
+      { "name": "The National Gallery", "url": "https://www.nationalgallery.org.uk/", "note": "Free entry.", "works": [
+        { "title": "Boy Bitten by a Lizard", "year": "c. 1594–95" },
+        { "title": "The Supper at Emmaus", "year": "1601" },
+        { "title": "Salome receives the Head of Saint John the Baptist", "year": "c. 1609–10" } ] } ] },
+    { "city": "Paris", "country": "France", "museums": [
+      { "name": "Musée du Louvre", "url": "https://www.louvre.fr/en", "works": [
+        { "title": "The Fortune Teller", "year": "c. 1595" },
+        { "title": "The Death of the Virgin", "year": "1601–06", "note": "Rejected by the church that commissioned it." },
+        { "title": "Portrait of Alof de Wignacourt", "year": "1607–08" } ] } ] },
+    { "city": "Vienna", "country": "Austria", "museums": [
+      { "name": "Kunsthistorisches Museum", "url": "https://www.khm.at/en/", "works": [
+        { "title": "The Crowning with Thorns", "year": "c. 1602–04" },
+        { "title": "Madonna of the Rosary", "year": "c. 1601–07" },
+        { "title": "David with the Head of Goliath", "year": "c. 1606–07" } ] } ] },
+    { "city": "Berlin and Potsdam", "country": "Germany", "museums": [
+      { "name": "Gemäldegalerie, Berlin", "url": "https://www.smb.museum/en/museums-institutions/gemaeldegalerie/", "works": [
+        { "title": "Amor Vincit Omnia", "year": "1601–02" } ] },
+      { "name": "Picture Gallery, Sanssouci (Potsdam)", "url": "https://www.spsg.de/en/", "note": "Open in the warmer months only.", "works": [
+        { "title": "The Incredulity of Saint Thomas", "year": "1601–02" } ] } ] },
+    { "city": "Madrid", "country": "Spain", "museums": [
+      { "name": "Museo del Prado", "url": "https://www.museodelprado.es/en", "works": [
+        { "title": "David with the Head of Goliath", "year": "c. 1600" } ] },
+      { "name": "Thyssen-Bornemisza Museum", "url": "https://www.museothyssen.org/en", "works": [
+        { "title": "Saint Catherine of Alexandria", "year": "c. 1598" } ] } ] },
+    { "city": "New York", "country": "USA", "museums": [
+      { "name": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/", "works": [
+        { "title": "The Musicians", "year": "1597" },
+        { "title": "The Denial of Saint Peter", "year": "1610" } ] } ] },
+    { "city": "Elsewhere in the US", "country": "USA", "museums": [
+      { "name": "Kimbell Art Museum (Fort Worth)", "url": "https://kimbellart.org/", "works": [
+        { "title": "The Cardsharps", "year": "c. 1595" } ] },
+      { "name": "Wadsworth Atheneum (Hartford)", "url": "https://www.thewadsworth.org/", "works": [
+        { "title": "Saint Francis of Assisi in Ecstasy", "year": "c. 1595" } ] },
+      { "name": "Detroit Institute of Arts", "url": "https://dia.org/", "works": [
+        { "title": "Martha and Mary Magdalene", "year": "c. 1598" } ] },
+      { "name": "Nelson-Atkins Museum of Art (Kansas City)", "url": "https://nelson-atkins.org/", "note": "Free entry.", "works": [
+        { "title": "Saint John the Baptist in the Wilderness", "year": "1604–05" } ] },
+      { "name": "Cleveland Museum of Art", "url": "https://www.clevelandart.org/", "note": "Free entry.", "works": [
+        { "title": "The Crucifixion of Saint Andrew", "year": "1606–07" } ] } ] }
+  ]
+}

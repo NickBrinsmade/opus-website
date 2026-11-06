@@ -1,0 +1,384 @@
+{
+  "artist": "Johannes Vermeer",
+  "checked": "2026-11-05",
+  "cities": [
+    {
+      "city": "New York",
+      "country": "USA",
+      "museums": [
+        {
+          "name": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/",
+          "note": "All five hang together in Gallery 614 (checked November 5, 2026).",
+          "works": [
+            {
+              "title": "Young Woman with a Water Pitcher",
+              "year": "c. 1662"
+            },
+            {
+              "title": "A Maid Asleep",
+              "year": "c. 1656–57"
+            },
+            {
+              "title": "Young Woman with a Lute",
+              "year": "c. 1662–63"
+            },
+            {
+              "title": "Study of a Young Woman",
+              "year": "c. 1665–67"
+            },
+            {
+              "title": "Allegory of the Catholic Faith",
+              "year": "c. 1670–72"
+            }
+          ]
+        },
+        {
+          "name": "The Frick Collection",
+          "url": "https://www.frick.org/",
+          "note": "A 15-minute walk from the Met along Fifth Avenue.",
+          "works": [
+            {
+              "title": "Officer and Laughing Girl",
+              "year": "c. 1657"
+            },
+            {
+              "title": "Girl Interrupted at Her Music",
+              "year": "c. 1658–59"
+            },
+            {
+              "title": "Mistress and Maid",
+              "year": "c. 1666–67"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "museums": [
+        {
+          "name": "Rijksmuseum",
+          "url": "https://www.rijksmuseum.nl/en",
+          "works": [
+            {
+              "title": "The Milkmaid",
+              "year": "c. 1660"
+            },
+            {
+              "title": "The Little Street",
+              "year": "c. 1658"
+            },
+            {
+              "title": "Woman in Blue Reading a Letter",
+              "year": "c. 1663",
+              "note": "Owned by the City of Amsterdam, on loan."
+            },
+            {
+              "title": "The Love Letter",
+              "year": "c. 1669–70"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Washington, D.C.",
+      "country": "USA",
+      "museums": [
+        {
+          "name": "National Gallery of Art",
+          "url": "https://www.nga.gov/",
+          "note": "Free entry.",
+          "works": [
+            {
+              "title": "Woman Holding a Balance",
+              "year": "c. 1664"
+            },
+            {
+              "title": "A Lady Writing",
+              "year": "c. 1665"
+            },
+            {
+              "title": "Girl with the Red Hat",
+              "year": "c. 1669"
+            },
+            {
+              "title": "Girl with a Flute",
+              "year": "c. 1669–75",
+              "tag": "disputed",
+              "note": "Since 2022 the museum labels it “Studio of Johannes Vermeer”."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "London",
+      "country": "UK",
+      "museums": [
+        {
+          "name": "The National Gallery",
+          "url": "https://www.nationalgallery.org.uk/",
+          "note": "Free entry.",
+          "works": [
+            {
+              "title": "A Young Woman Standing at a Virginal",
+              "year": "c. 1670–72"
+            },
+            {
+              "title": "A Young Woman Seated at a Virginal",
+              "year": "c. 1670–72"
+            }
+          ]
+        },
+        {
+          "name": "Kenwood House",
+          "url": "https://www.english-heritage.org.uk/visit/places/kenwood/",
+          "note": "On Hampstead Heath. Free entry.",
+          "works": [
+            {
+              "title": "The Guitar Player",
+              "year": "c. 1672"
+            }
+          ]
+        },
+        {
+          "name": "Royal Collection (Buckingham Palace)",
+          "url": "https://www.rct.uk/",
+          "works": [
+            {
+              "title": "The Music Lesson",
+              "year": "c. 1662–65",
+              "tag": "limited",
+              "note": "Hangs in the Picture Gallery at Buckingham Palace, so you can see it only when the State Rooms open, usually in summer."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "The Hague",
+      "country": "Netherlands",
+      "museums": [
+        {
+          "name": "Mauritshuis",
+          "url": "https://www.mauritshuis.nl/en/",
+          "note": "Under an hour from Amsterdam by train.",
+          "works": [
+            {
+              "title": "Girl with a Pearl Earring",
+              "year": "c. 1665"
+            },
+            {
+              "title": "View of Delft",
+              "year": "c. 1660–61"
+            },
+            {
+              "title": "Diana and Her Nymphs",
+              "year": "c. 1653–54"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Paris",
+      "country": "France",
+      "museums": [
+        {
+          "name": "Musée du Louvre",
+          "url": "https://www.louvre.fr/en",
+          "works": [
+            {
+              "title": "The Astronomer",
+              "year": "c. 1668"
+            },
+            {
+              "title": "The Lacemaker",
+              "year": "c. 1669–70"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Berlin",
+      "country": "Germany",
+      "museums": [
+        {
+          "name": "Gemäldegalerie",
+          "url": "https://www.smb.museum/en/museums-institutions/gemaeldegalerie/",
+          "works": [
+            {
+              "title": "The Glass of Wine",
+              "year": "c. 1659–60"
+            },
+            {
+              "title": "Woman with a Pearl Necklace",
+              "year": "c. 1663–64"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Dresden",
+      "country": "Germany",
+      "museums": [
+        {
+          "name": "Gemäldegalerie Alte Meister",
+          "url": "https://gemaeldegalerie.skd.museum/en/",
+          "works": [
+            {
+              "title": "Girl Reading a Letter at an Open Window",
+              "year": "c. 1657–59",
+              "note": "Restored in 2021, revealing a painting of Cupid on the back wall."
+            },
+            {
+              "title": "The Procuress",
+              "year": "1656"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Vienna",
+      "country": "Austria",
+      "museums": [
+        {
+          "name": "Kunsthistorisches Museum",
+          "url": "https://www.khm.at/en/",
+          "works": [
+            {
+              "title": "The Art of Painting",
+              "year": "c. 1666–68"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Frankfurt",
+      "country": "Germany",
+      "museums": [
+        {
+          "name": "Städel Museum",
+          "url": "https://www.staedelmuseum.de/en",
+          "works": [
+            {
+              "title": "The Geographer",
+              "year": "c. 1669"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Braunschweig",
+      "country": "Germany",
+      "museums": [
+        {
+          "name": "Herzog Anton Ulrich Museum",
+          "url": "https://3landesmuseen-braunschweig.de/herzog-anton-ulrich-museum",
+          "works": [
+            {
+              "title": "The Girl with the Wine Glass",
+              "year": "c. 1659–60"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Edinburgh",
+      "country": "UK",
+      "museums": [
+        {
+          "name": "Scottish National Gallery",
+          "url": "https://www.nationalgalleries.org/",
+          "note": "Free entry.",
+          "works": [
+            {
+              "title": "Christ in the House of Martha and Mary",
+              "year": "c. 1654–55"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Dublin",
+      "country": "Ireland",
+      "museums": [
+        {
+          "name": "National Gallery of Ireland",
+          "url": "https://www.nationalgallery.ie/",
+          "note": "Free entry.",
+          "works": [
+            {
+              "title": "Woman Writing a Letter, with Her Maid",
+              "year": "c. 1670"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Tokyo",
+      "country": "Japan",
+      "museums": [
+        {
+          "name": "National Museum of Western Art",
+          "url": "https://www.nmwa.go.jp/en/",
+          "works": [
+            {
+              "title": "Saint Praxedis",
+              "year": "1655",
+              "tag": "disputed",
+              "note": "Attributed; many scholars doubt it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Boston",
+      "country": "USA",
+      "museums": [
+        {
+          "name": "Isabella Stewart Gardner Museum",
+          "url": "https://www.gardnermuseum.org/",
+          "works": [
+            {
+              "title": "The Concert",
+              "year": "c. 1664",
+              "tag": "stolen",
+              "note": "Taken in the 1990 robbery. The empty frame still hangs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Private collection",
+      "country": "New York",
+      "museums": [
+        {
+          "name": "The Leiden Collection",
+          "url": "https://www.theleidencollection.com/",
+          "note": "A private collection that lends often to museum exhibitions.",
+          "works": [
+            {
+              "title": "Young Woman Seated at a Virginal",
+              "year": "c. 1670–72",
+              "tag": "private"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

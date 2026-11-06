@@ -1,0 +1,47 @@
+{
+  "artist": "Leonardo da Vinci",
+  "checked": "2026-11-05",
+  "cities": [
+    { "city": "Paris", "country": "France", "museums": [
+      { "name": "Musée du Louvre", "url": "https://www.louvre.fr/en", "note": "More Leonardo paintings than anywhere else.", "works": [
+        { "title": "Virgin of the Rocks", "year": "1483–86", "note": "The first version; the second is in London." },
+        { "title": "La Belle Ferronnière", "year": "c. 1490–97" },
+        { "title": "Mona Lisa", "year": "c. 1503–19" },
+        { "title": "The Virgin and Child with Saint Anne", "year": "c. 1503–19" },
+        { "title": "Saint John the Baptist", "year": "c. 1513–16" } ] } ] },
+    { "city": "Florence", "country": "Italy", "museums": [
+      { "name": "Uffizi Gallery", "url": "https://www.uffizi.it/en", "works": [
+        { "title": "The Baptism of Christ", "year": "c. 1472–75", "note": "Painted with his master Verrocchio; Leonardo did the angel on the left." },
+        { "title": "Annunciation", "year": "c. 1472–76" },
+        { "title": "Adoration of the Magi", "year": "1481–82", "note": "Unfinished, and restored in 2017." } ] } ] },
+    { "city": "Milan", "country": "Italy", "museums": [
+      { "name": "Santa Maria delle Grazie (Cenacolo Vinciano)", "url": "https://cenacolovinciano.org/en/", "note": "15-minute timed visits; tickets are released every three months and sell out.", "works": [
+        { "title": "The Last Supper", "year": "c. 1495–98", "note": "A wall painting in the monastery’s former dining hall." } ] },
+      { "name": "Pinacoteca Ambrosiana", "url": "https://www.ambrosiana.it/en/", "works": [
+        { "title": "Portrait of a Musician", "year": "c. 1483–87", "note": "His only surviving portrait of a man." } ] },
+      { "name": "Castello Sforzesco", "url": "https://www.milanocastello.it/en", "works": [
+        { "title": "Sala delle Asse", "year": "1498", "tag": "limited", "note": "A ceiling of intertwined trees, under long-term restoration; check whether it can be seen." } ] } ] },
+    { "city": "St Petersburg", "country": "Russia", "museums": [
+      { "name": "State Hermitage Museum", "url": "https://www.hermitagemuseum.org/", "works": [
+        { "title": "Benois Madonna", "year": "c. 1478–80" },
+        { "title": "Madonna Litta", "year": "c. 1490", "tag": "disputed", "note": "Many scholars think a pupil painted most of it." } ] } ] },
+    { "city": "Kraków", "country": "Poland", "museums": [
+      { "name": "Czartoryski Museum (National Museum in Kraków)", "url": "https://mnk.pl/branch/the-princes-czartoryski-museum", "works": [
+        { "title": "Lady with an Ermine", "year": "c. 1489–91" } ] } ] },
+    { "city": "Washington, D.C.", "country": "USA", "museums": [
+      { "name": "National Gallery of Art", "url": "https://www.nga.gov/", "note": "Free entry.", "works": [
+        { "title": "Ginevra de’ Benci", "year": "c. 1474–78", "note": "The only Leonardo painting in the Americas." } ] } ] },
+    { "city": "London", "country": "UK", "museums": [
+      { "name": "The National Gallery", "url": "https://www.nationalgallery.org.uk/", "note": "Free entry. Also has the Burlington House Cartoon, his great drawing of the Virgin and Child.", "works": [
+        { "title": "The Virgin of the Rocks", "year": "c. 1491–1508" } ] } ] },
+    { "city": "Munich", "country": "Germany", "museums": [
+      { "name": "Alte Pinakothek", "url": "https://www.pinakothek.de/en", "works": [
+        { "title": "Madonna of the Carnation", "year": "c. 1478–80" } ] } ] },
+    { "city": "Vatican City", "country": "Rome", "museums": [
+      { "name": "Vatican Museums (Pinacoteca)", "url": "https://www.museivaticani.va/", "works": [
+        { "title": "Saint Jerome in the Wilderness", "year": "c. 1480", "note": "Unfinished." } ] } ] },
+    { "city": "Parma", "country": "Italy", "museums": [
+      { "name": "Galleria Nazionale (Complesso della Pilotta)", "url": "https://complessopilotta.it/en/", "works": [
+        { "title": "Head of a Woman (La Scapigliata)", "year": "c. 1500–10", "note": "An oil sketch on a small panel." } ] } ] }
+  ]
+}

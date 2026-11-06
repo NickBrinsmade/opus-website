@@ -1,0 +1,59 @@
+{
+  "artist": "Gustav Klimt",
+  "checked": "2026-11-05",
+  "complete": false,
+  "cities": [
+    { "city": "Vienna", "country": "Austria", "museums": [
+      { "name": "Upper Belvedere", "url": "https://www.belvedere.at/en", "countLabel": "the world’s largest Klimt collection", "note": "Timed tickets; The Kiss draws crowds, so go at opening.", "works": [
+        { "title": "Judith I", "year": "1901" },
+        { "title": "Fritza Riedler", "year": "1906" },
+        { "title": "Farm Garden with Sunflowers", "year": "c. 1907" },
+        { "title": "The Kiss", "year": "1907–08" },
+        { "title": "Adam and Eve", "year": "1917–18", "note": "Unfinished." },
+        { "title": "Portrait of Amalie Zuckerkandl", "year": "1917–18", "note": "Unfinished." } ] },
+      { "name": "Vienna Secession", "url": "https://www.secession.at/en/", "note": "Owned by the Belvedere, shown in the Secession building’s basement.", "works": [
+        { "title": "Beethoven Frieze", "year": "1901–02", "note": "Around 34 meters long, painted for a 1902 exhibition." } ] },
+      { "name": "Leopold Museum", "url": "https://www.leopoldmuseum.org/en", "works": [
+        { "title": "Death and Life", "year": "1910–15" },
+        { "title": "Attersee landscapes", "note": "Several of his square lake paintings." } ] },
+      { "name": "Kunsthistorisches Museum", "url": "https://www.khm.at/en/", "note": "Above the main staircase. Look up.", "works": [
+        { "title": "Spandrel and intercolumnar paintings", "year": "1890–91", "note": "Early, academic Klimt, including a figure of ancient Egypt." } ] },
+      { "name": "Wien Museum", "url": "https://www.wienmuseum.at/en", "note": "Free entry to the permanent collection.", "works": [
+        { "title": "Pallas Athene", "year": "1898" },
+        { "title": "Portrait of Emilie Flöge", "year": "1902" } ] },
+      { "name": "MAK – Museum of Applied Arts", "url": "https://www.mak.at/en", "works": [
+        { "title": "Designs for the Stoclet Frieze (including The Tree of Life)", "year": "c. 1910–11" } ] } ] },
+    { "city": "New York", "country": "USA", "museums": [
+      { "name": "Neue Galerie", "url": "https://www.neuegalerie.org/", "works": [
+        { "title": "Portrait of Adele Bloch-Bauer I (“The Woman in Gold”)", "year": "1907" } ] },
+      { "name": "Museum of Modern Art", "url": "https://www.moma.org/", "works": [
+        { "title": "Hope II", "year": "1907–08" } ] },
+      { "name": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/", "works": [
+        { "title": "Serena Pulitzer Lederer", "year": "1899" },
+        { "title": "Mäda Primavesi", "year": "1912–13" } ] } ] },
+    { "city": "Prague", "country": "Czech Republic", "museums": [
+      { "name": "National Gallery Prague", "url": "https://www.ngprague.cz/en", "works": [
+        { "title": "Water Castle", "year": "1908" },
+        { "title": "The Virgin (The Maiden)", "year": "1913" } ] } ] },
+    { "city": "Italy", "country": "Rome, Venice, Piacenza", "museums": [
+      { "name": "Galleria Nazionale d’Arte Moderna, Rome", "url": "https://lagallerianazionale.com/en/", "works": [
+        { "title": "The Three Ages of Woman", "year": "1905" } ] },
+      { "name": "Ca’ Pesaro, Venice", "url": "https://capesaro.visitmuve.it/en/", "works": [
+        { "title": "Judith II (Salome)", "year": "1909" } ] },
+      { "name": "Galleria Ricci Oddi, Piacenza", "url": "https://www.riccioddi.it/", "works": [
+        { "title": "Portrait of a Lady", "year": "1916–17", "note": "Stolen in 1997 and found in 2019, hidden in the gallery’s own outer wall." } ] } ] },
+    { "city": "Washington, D.C.", "country": "USA", "museums": [
+      { "name": "National Gallery of Art", "url": "https://www.nga.gov/", "note": "Free entry.", "works": [
+        { "title": "Baby (Cradle)", "year": "1917–18" } ] } ] },
+    { "city": "Ottawa", "country": "Canada", "museums": [
+      { "name": "National Gallery of Canada", "url": "https://www.gallery.ca/", "works": [
+        { "title": "Hope I", "year": "1903" } ] } ] },
+    { "city": "Elsewhere", "country": "Europe, US and Japan", "museums": [
+      { "name": "Kunstmuseum Solothurn (Switzerland)", "url": "https://kunstmuseum-so.ch/", "note": "Free entry.", "works": [
+        { "title": "Goldfish", "year": "1901–02" } ] },
+      { "name": "Harvard Art Museums (Cambridge, Mass.)", "url": "https://harvardartmuseums.org/", "note": "Free entry.", "works": [
+        { "title": "Pear Tree", "year": "1903" } ] },
+      { "name": "Toyota Municipal Museum of Art (Japan)", "url": "https://www.museum.toyota.aichi.jp/en/", "works": [
+        { "title": "Portrait of Eugenia Primavesi", "year": "1913–14" } ] } ] }
+  ]
+}

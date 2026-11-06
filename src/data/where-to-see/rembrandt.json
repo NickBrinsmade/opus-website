@@ -1,0 +1,77 @@
+{
+  "artist": "Rembrandt van Rijn",
+  "checked": "2026-11-05",
+  "complete": false,
+  "cities": [
+    { "city": "Amsterdam", "country": "Netherlands", "museums": [
+      { "name": "Rijksmuseum", "url": "https://www.rijksmuseum.nl/en", "note": "The largest Rembrandt collection anywhere.", "works": [
+        { "title": "The Night Watch", "year": "1642", "note": "Being restored in a glass chamber in the gallery, so you can watch the work. Check the museum’s Operation Night Watch page for its current state." },
+        { "title": "Portraits of Marten Soolmans and Oopjen Coppit", "year": "1634", "note": "Bought jointly with the Louvre in 2016; the pair moves between the two museums." },
+        { "title": "Self-Portrait as the Apostle Paul", "year": "1661" },
+        { "title": "The Syndics of the Drapers’ Guild", "year": "1662" },
+        { "title": "The Jewish Bride", "year": "c. 1665–69" } ] },
+      { "name": "Rembrandt House Museum", "url": "https://www.rembrandthuis.nl/en/", "note": "The house where he lived and worked from 1639 until his bankruptcy, with his studio and a large collection of his etchings.", "works": [
+        { "title": "Etchings and the reconstructed studio", "note": "Few paintings; come for the house." } ] } ] },
+    { "city": "The Hague", "country": "Netherlands", "museums": [
+      { "name": "Mauritshuis", "url": "https://www.mauritshuis.nl/en/", "works": [
+        { "title": "The Anatomy Lesson of Dr Nicolaes Tulp", "year": "1632", "note": "The group portrait that made his name, at 26." },
+        { "title": "Simeon’s Song of Praise", "year": "1631" },
+        { "title": "Self-Portrait", "year": "1669", "note": "Painted in the last year of his life." } ] } ] },
+    { "city": "London", "country": "UK", "museums": [
+      { "name": "The National Gallery", "url": "https://www.nationalgallery.org.uk/", "note": "Free entry.", "works": [
+        { "title": "Belshazzar’s Feast", "year": "c. 1636–38" },
+        { "title": "Self-Portrait at the Age of 34", "year": "1640" },
+        { "title": "A Woman Bathing in a Stream", "year": "1654" },
+        { "title": "Self-Portrait at the Age of 63", "year": "1669" } ] },
+      { "name": "Kenwood House", "url": "https://www.english-heritage.org.uk/visit/places/kenwood/", "note": "Free entry.", "works": [
+        { "title": "Self-Portrait with Two Circles", "year": "c. 1665" } ] },
+      { "name": "The Wallace Collection", "url": "https://www.wallacecollection.org/", "note": "Free entry.", "works": [
+        { "title": "Titus, the Artist’s Son", "year": "c. 1657" } ] },
+      { "name": "Dulwich Picture Gallery", "url": "https://www.dulwichpicturegallery.org.uk/", "works": [
+        { "title": "Girl at a Window", "year": "1645" } ] } ] },
+    { "city": "New York", "country": "USA", "museums": [
+      { "name": "The Metropolitan Museum of Art", "url": "https://www.metmuseum.org/", "works": [
+        { "title": "Aristotle with a Bust of Homer", "year": "1653" },
+        { "title": "Flora", "year": "c. 1654" },
+        { "title": "Self-Portrait", "year": "1660" } ] },
+      { "name": "The Frick Collection", "url": "https://www.frick.org/", "works": [
+        { "title": "The Polish Rider", "year": "c. 1655" },
+        { "title": "Self-Portrait", "year": "1658" } ] } ] },
+    { "city": "Washington, D.C.", "country": "USA", "museums": [
+      { "name": "National Gallery of Art", "url": "https://www.nga.gov/", "note": "Free entry.", "works": [
+        { "title": "The Mill", "year": "1645–48" },
+        { "title": "Self-Portrait", "year": "1659" },
+        { "title": "Lucretia", "year": "1664" } ] } ] },
+    { "city": "Paris", "country": "France", "museums": [
+      { "name": "Musée du Louvre", "url": "https://www.louvre.fr/en", "works": [
+        { "title": "Bathsheba at Her Bath", "year": "1654" },
+        { "title": "The Slaughtered Ox", "year": "1655" },
+        { "title": "Self-Portrait at the Easel", "year": "1660" } ] } ] },
+    { "city": "Germany", "country": "Berlin, Kassel, Dresden, Munich", "museums": [
+      { "name": "Gemäldegalerie, Berlin", "url": "https://www.smb.museum/en/museums-institutions/gemaeldegalerie/", "works": [
+        { "title": "Susanna and the Elders", "year": "1647" },
+        { "title": "The Man with the Golden Helmet", "year": "c. 1650", "tag": "disputed", "note": "Famous as a Rembrandt for a century; since 1985 attributed to his circle." } ] },
+      { "name": "Gemäldegalerie Alte Meister, Kassel", "url": "https://heritage-kassel.de/en/", "works": [
+        { "title": "Jacob Blessing the Sons of Joseph", "year": "1656" } ] },
+      { "name": "Gemäldegalerie Alte Meister, Dresden", "url": "https://gemaeldegalerie.skd.museum/en/", "works": [
+        { "title": "Self-Portrait with Saskia (The Prodigal Son in the Tavern)", "year": "c. 1635" },
+        { "title": "The Abduction of Ganymede", "year": "1635" } ] },
+      { "name": "Alte Pinakothek, Munich", "url": "https://www.pinakothek.de/en", "works": [
+        { "title": "The Passion series", "year": "1633–46", "note": "Five scenes painted for the Dutch stadholder." } ] } ] },
+    { "city": "Elsewhere in Europe", "country": "Stockholm, Madrid, Edinburgh", "museums": [
+      { "name": "Nationalmuseum, Stockholm", "url": "https://www.nationalmuseum.se/en", "works": [
+        { "title": "The Conspiracy of Claudius Civilis", "year": "1661–62", "note": "A fragment: painted for Amsterdam’s town hall, rejected, and cut down." } ] },
+      { "name": "Museo del Prado, Madrid", "url": "https://www.museodelprado.es/en", "works": [
+        { "title": "Judith at the Banquet of Holofernes", "year": "1634" } ] },
+      { "name": "Scottish National Gallery, Edinburgh", "url": "https://www.nationalgalleries.org/", "note": "Free entry.", "works": [
+        { "title": "Self-Portrait Aged 51", "year": "1657" } ] } ] },
+    { "city": "St Petersburg", "country": "Russia", "museums": [
+      { "name": "State Hermitage Museum", "url": "https://www.hermitagemuseum.org/", "works": [
+        { "title": "Danaë", "year": "1636", "note": "Restored after an acid attack in 1985." },
+        { "title": "The Return of the Prodigal Son", "year": "c. 1668" } ] } ] },
+    { "city": "Boston", "country": "USA", "museums": [
+      { "name": "Isabella Stewart Gardner Museum", "url": "https://www.gardnermuseum.org/", "works": [
+        { "title": "Self-Portrait, Age 23", "year": "1629" },
+        { "title": "The Storm on the Sea of Galilee", "year": "1633", "tag": "stolen", "note": "His only seascape, taken in the 1990 robbery." } ] } ] }
+  ]
+}

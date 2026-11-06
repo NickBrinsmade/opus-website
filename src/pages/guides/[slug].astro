@@ -6,6 +6,7 @@ import EndCta from '../../components/EndCta.astro';
 import StickyCta from '../../components/StickyCta.astro';
 import GuideCard from '../../components/GuideCard.astro';
 import Phone from '../../components/Phone.astro';
+import WhereToSee from '../../components/WhereToSee.astro';
 import { allGuides, readingMinutes, fmtDate, isDraft, type Guide } from '../../lib/guides';
 import { AUDIENCES, CATEGORIES, url } from '../../lib/site';
 
@@ -89,7 +90,7 @@ if (d.faq.length) jsonLd.push({
         )}
       </aside>
       <div class="prose" data-article-body>
-        <Content components={{ InlineCta, Phone }} />
+        <Content components={{ InlineCta, Phone, WhereToSee }} />
 
         {d.faq.length > 0 && (
           <section class="g-faq">

@@ -1,0 +1,61 @@
+---
+// City-by-city list of where an artist's works hang, for the "Where to see
+// [artist]" series. Data lives in src/data/where-to-see/<slug>.json: built
+// from Wikidata + our institutions table, then curated by hand (forgeries,
+// copies, former owners and rejected attributions removed).
+interface Work { title: string; year?: string; note?: string; tag?: 'disputed' | 'stolen' | 'private' | 'limited' }
+// countLabel: the museum's own published holding ("88 paintings"); when set,
+// works are highlights rather than the full list.
+interface Museum { name: string; url?: string; note?: string; countLabel?: string; works: Work[] }
+interface City { city: string; country: string; museums: Museum[] }
+interface Props { artist: string }
+const data = import.meta.glob<{ cities: City[]; complete?: boolean }>('../data/where-to-see/*.json', { eager: true, import: 'default' });
+const file = data[`../data/where-to-see/${Astro.props.artist}.json`];
+if (!file) throw new Error(`No where-to-see data for "${Astro.props.artist}"`);
+// complete: false for artists too prolific to list in full. Hides the per-city
+// counts, which would only count highlights.
+const { cities, complete = true } = file;
+const tagText = { disputed: 'Disputed', stolen: 'Stolen', private: 'Private', limited: 'Limited access' };
+const total = (c: City) => c.museums.reduce((n, m) => n + m.works.length, 0);
+---
+<div class="wts">
+  {cities.map((c) => (
+    <section class="city">
+      <h3>{c.city}, {c.country} {complete && <span class="n">{total(c)}</span>}</h3>
+      {c.museums.map((m) => (
+        <div class="museum">
+          <p class="mname">
+            {m.url ? <a href={m.url}>{m.name}</a> : m.name}
+            {m.countLabel && <span class="more"> · {m.countLabel}</span>}
+          </p>
+          {m.note && <p class="mnote">{m.note}</p>}
+          <ul>
+            {m.works.map((w) => (
+              <li>
+                <em>{w.title}</em>{w.year && <span class="yr">, {w.year}</span>}
+                {w.tag && <span class:list={['tag', w.tag]}>{tagText[w.tag]}</span>}
+                {w.note && <span class="wnote"> {w.note}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  ))}
+</div>
+<style>
+  .wts { margin: 8px 0 28px; }
+  .city { border-top: 1px solid var(--rule); padding-top: 4px; }
+  .city h3 { display: flex; align-items: baseline; gap: 10px; }
+  .n { font: 600 13px/1 var(--sans); color: var(--ink-2); border: 1px solid var(--rule); border-radius: 999px; padding: 4px 9px; }
+  .museum { margin: 0 0 18px; }
+  .mname { margin: 0 0 4px !important; font: 600 17px/1.4 var(--sans); }
+  .more { font-weight: 400; color: var(--ink-3); font-size: 15px; }
+  .mnote { margin: 0 0 6px !important; font-size: 16px; color: var(--ink-2); }
+  .museum ul { margin: 0 !important; }
+  .museum li { margin-bottom: 4px; font-size: 17px; }
+  .yr { color: var(--ink-3); }
+  .wnote { color: var(--ink-2); font-size: 15px; }
+  .tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px; font: 600 11px/1.5 var(--sans); letter-spacing: 0.02em; text-transform: uppercase; vertical-align: 2px; background: var(--paper-2); color: var(--ink-2); }
+  .tag.stolen { background: rgba(160, 40, 40, 0.12); color: var(--dab-red); }
+</style>

@@ -1,0 +1,42 @@
+{
+  "artist": "Frida Kahlo",
+  "checked": "2026-11-05",
+  "complete": false,
+  "cities": [
+    { "city": "Mexico City", "country": "Mexico", "museums": [
+      { "name": "Museo Dolores Olmedo (Xochimilco)", "url": "https://museodoloresolmedo.org.mx/", "countLabel": "the largest Kahlo collection", "note": "Reopened on May 30, 2026 after six years closed, with a large Diego Rivera collection too.", "works": [
+        { "title": "The Bus", "year": "1929" },
+        { "title": "Henry Ford Hospital", "year": "1932" },
+        { "title": "A Few Small Nips", "year": "1935" },
+        { "title": "The Broken Column", "year": "1944" },
+        { "title": "Self-Portrait with Small Monkey", "year": "1945" } ] },
+      { "name": "Museo de Arte Moderno (Chapultepec)", "url": "https://mam.inba.gob.mx/", "works": [
+        { "title": "The Two Fridas", "year": "1939", "note": "Her largest painting." } ] },
+      { "name": "Museo Frida Kahlo (La Casa Azul), Coyoacán", "url": "https://www.museofridakahlo.org.mx/en/", "note": "The house where she was born, lived and died. Tickets online only, often sold out days ahead.", "works": [
+        { "title": "Portrait of My Father", "year": "1951" },
+        { "title": "Marxism Will Give Health to the Sick", "year": "c. 1954" },
+        { "title": "Viva la Vida, Watermelons", "year": "1954", "note": "Among the last things she painted." } ] } ] },
+    { "city": "New York", "country": "USA", "museums": [
+      { "name": "Museum of Modern Art", "url": "https://www.moma.org/", "works": [
+        { "title": "My Grandparents, My Parents, and I (Family Tree)", "year": "1936" },
+        { "title": "Fulang-Chang and I", "year": "1937" },
+        { "title": "Self-Portrait with Cropped Hair", "year": "1940" } ] } ] },
+    { "city": "Elsewhere in the US", "country": "USA", "museums": [
+      { "name": "San Francisco Museum of Modern Art", "url": "https://www.sfmoma.org/", "works": [
+        { "title": "Frieda and Diego Rivera", "year": "1931", "note": "Painted in San Francisco." } ] },
+      { "name": "National Museum of Women in the Arts (Washington, D.C.)", "url": "https://nmwa.org/", "works": [
+        { "title": "Self-Portrait Dedicated to Leon Trotsky", "year": "1937" } ] },
+      { "name": "Buffalo AKG Art Museum", "url": "https://buffaloakg.org/", "works": [
+        { "title": "Self-Portrait with Monkey", "year": "1938" } ] },
+      { "name": "Phoenix Art Museum", "url": "https://phxart.org/", "works": [
+        { "title": "The Suicide of Dorothy Hale", "year": "1939" } ] },
+      { "name": "Harry Ransom Center (Austin)", "url": "https://www.hrc.utexas.edu/", "note": "Often lent to exhibitions; check it’s home.", "works": [
+        { "title": "Self-Portrait with Thorn Necklace and Hummingbird", "year": "1940" } ] } ] },
+    { "city": "Buenos Aires", "country": "Argentina", "museums": [
+      { "name": "MALBA", "url": "https://www.malba.org.ar/en/", "works": [
+        { "title": "Self-Portrait with Monkey and Parrot", "year": "1942" } ] } ] },
+    { "city": "Paris", "country": "France", "museums": [
+      { "name": "Centre Pompidou", "url": "https://www.centrepompidou.fr/en/", "works": [
+        { "title": "The Frame", "year": "c. 1938", "tag": "limited", "note": "Bought by the French state in 1939, it was the first work by a 20th-century Mexican artist acquired by a major international museum. The Pompidou is closed until 2030." } ] } ] }
+  ]
+}

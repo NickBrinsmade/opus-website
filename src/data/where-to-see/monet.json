@@ -1,0 +1,308 @@
+{
+  "artist": "Claude Monet",
+  "checked": "2026-11-05",
+  "complete": false,
+  "cities": [
+    {
+      "city": "Paris",
+      "country": "France",
+      "museums": [
+        {
+          "name": "Musée Marmottan Monet",
+          "url": "https://www.marmottan.fr/en/",
+          "countLabel": "the world’s largest Monet collection",
+          "note": "Built on the 1966 bequest of his son Michel. Its own landscape exhibition, Monet to Hockney, runs until January 31, 2027.",
+          "works": [
+            {
+              "title": "Impression, Sunrise",
+              "year": "1872",
+              "note": "The painting that gave Impressionism its name."
+            },
+            {
+              "title": "The Japanese Bridge",
+              "year": "c. 1918–24"
+            },
+            {
+              "title": "Water Lilies",
+              "note": "Dozens of late studies from Giverny."
+            }
+          ]
+        },
+        {
+          "name": "Musée d’Orsay",
+          "url": "https://www.musee-orsay.fr/en",
+          "works": [
+            {
+              "title": "Women in the Garden",
+              "year": "1866"
+            },
+            {
+              "title": "The Magpie",
+              "year": "1868–69"
+            },
+            {
+              "title": "Poppy Field",
+              "year": "1873"
+            },
+            {
+              "title": "The Saint-Lazare Station",
+              "year": "1877"
+            },
+            {
+              "title": "Rouen Cathedral",
+              "year": "1892–94",
+              "note": "Five canvases from the series, hung together."
+            },
+            {
+              "title": "Houses of Parliament, London: Sun Breaking Through the Fog",
+              "year": "1904"
+            }
+          ]
+        },
+        {
+          "name": "Musée de l’Orangerie",
+          "url": "https://www.musee-orangerie.fr/en",
+          "note": "The centenary exhibition Monet, peindre le temps runs until January 25, 2027.",
+          "works": [
+            {
+              "title": "Water Lilies (Nymphéas)",
+              "year": "installed 1927",
+              "note": "Eight huge panels in two oval rooms, designed with Monet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "New York",
+      "country": "USA",
+      "museums": [
+        {
+          "name": "The Metropolitan Museum of Art",
+          "url": "https://www.metmuseum.org/",
+          "works": [
+            {
+              "title": "Garden at Sainte-Adresse",
+              "year": "1867"
+            },
+            {
+              "title": "La Grenouillère",
+              "year": "1869"
+            },
+            {
+              "title": "Haystacks (Effect of Snow and Sun)",
+              "year": "1891"
+            },
+            {
+              "title": "Rouen Cathedral: The Portal (Sunlight)",
+              "year": "1894"
+            },
+            {
+              "title": "Bridge over a Pond of Water Lilies",
+              "year": "1899"
+            }
+          ]
+        },
+        {
+          "name": "Museum of Modern Art",
+          "url": "https://www.moma.org/",
+          "works": [
+            {
+              "title": "Water Lilies",
+              "year": "1914–26",
+              "note": "One of the large late panels, nearly 6 meters wide."
+            },
+            {
+              "title": "Reflections of Clouds on the Water-Lily Pond",
+              "year": "c. 1920",
+              "note": "A triptych almost 13 meters wide."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Chicago",
+      "country": "USA",
+      "museums": [
+        {
+          "name": "Art Institute of Chicago",
+          "url": "https://www.artic.edu/",
+          "note": "One of the largest Monet collections outside Paris.",
+          "works": [
+            {
+              "title": "Arrival of the Normandy Train, Gare Saint-Lazare",
+              "year": "1877"
+            },
+            {
+              "title": "Stacks of Wheat",
+              "year": "1890–91",
+              "note": "Several canvases from the series, the largest group in any museum."
+            },
+            {
+              "title": "Water Lily Pond",
+              "year": "1900"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Boston",
+      "country": "USA",
+      "museums": [
+        {
+          "name": "Museum of Fine Arts, Boston",
+          "url": "https://www.mfa.org/",
+          "note": "One of the largest Monet collections outside France.",
+          "works": [
+            {
+              "title": "La Japonaise (Camille Monet in Japanese Costume)",
+              "year": "1876"
+            },
+            {
+              "title": "Water Lilies",
+              "year": "1905"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Washington, D.C.",
+      "country": "USA",
+      "museums": [
+        {
+          "name": "National Gallery of Art",
+          "url": "https://www.nga.gov/",
+          "note": "Free entry.",
+          "works": [
+            {
+              "title": "Woman with a Parasol: Madame Monet and Her Son",
+              "year": "1875"
+            },
+            {
+              "title": "Rouen Cathedral, West Façade",
+              "year": "1894"
+            },
+            {
+              "title": "The Japanese Footbridge",
+              "year": "1899"
+            },
+            {
+              "title": "The Houses of Parliament, Sunset",
+              "year": "1903"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Potsdam",
+      "country": "Germany",
+      "museums": [
+        {
+          "name": "Museum Barberini",
+          "url": "https://www.museum-barberini.de/en/",
+          "countLabel": "about 40 Monets",
+          "note": "The Hasso Plattner Collection, always on view: the largest group of Monets in Europe outside Paris. 30 minutes from Berlin.",
+          "works": [
+            {
+              "title": "Grainstacks",
+              "year": "1890",
+              "note": "Sold at auction in 2019 for $110.7 million, then a record for Monet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "London",
+      "country": "UK",
+      "museums": [
+        {
+          "name": "The National Gallery",
+          "url": "https://www.nationalgallery.org.uk/",
+          "note": "Free entry.",
+          "works": [
+            {
+              "title": "Bathers at La Grenouillère",
+              "year": "1869"
+            },
+            {
+              "title": "The Thames below Westminster",
+              "year": "c. 1871"
+            },
+            {
+              "title": "The Gare St-Lazare",
+              "year": "1877"
+            },
+            {
+              "title": "The Water-Lily Pond",
+              "year": "1899"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Philadelphia",
+      "country": "USA",
+      "museums": [
+        {
+          "name": "Philadelphia Museum of Art",
+          "url": "https://philamuseum.org/",
+          "works": [
+            {
+              "title": "Poplars",
+              "year": "1891"
+            },
+            {
+              "title": "The Japanese Footbridge and the Water Lily Pool, Giverny",
+              "year": "1899"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Tokyo",
+      "country": "Japan",
+      "museums": [
+        {
+          "name": "National Museum of Western Art",
+          "url": "https://www.nmwa.go.jp/en/",
+          "works": [
+            {
+              "title": "Water Lilies",
+              "year": "1916"
+            },
+            {
+              "title": "Water Lilies: Reflections of Weeping Willows",
+              "year": "1916",
+              "note": "Badly damaged, rediscovered at the Louvre in 2016 and shown after conservation, with its missing top half left visible."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Rouen",
+      "country": "France",
+      "museums": [
+        {
+          "name": "Musée des Beaux-Arts de Rouen",
+          "url": "https://mbarouen.fr/en",
+          "note": "The cathedral he painted is a few minutes’ walk away.",
+          "works": [
+            {
+              "title": "Rouen Cathedral",
+              "year": "1892–94",
+              "note": "One canvas from the series."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

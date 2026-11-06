@@ -32,7 +32,8 @@ const guides = defineCollection({
 // and only render in `npm run dev`. Approving = moving the file into
 // src/content/guides.
 const drafts = defineCollection({
-  loader: glob({ pattern: ['**/*.{md,mdx}', '!PLAN.md', '!APP_TEST.md'], base: '../guide-drafts' }),
+  // Drafts are .mdx only, so the planning notes (.md) in that folder are ignored.
+  loader: glob({ pattern: '**/*.mdx', base: '../guide-drafts' }),
   schema,
 });
 
