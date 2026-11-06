@@ -11,7 +11,7 @@ const guides = (await allGuides())
 
 const faq = [
   { q: 'Is Opus free?', a: 'Yes. Opus is free while we test it, and recognizing artworks will stay free.' },
-  { q: 'When can I use it?', a: 'We are inviting testers in small groups on iPhone (through TestFlight) and Android (through Google Play testing). Request access with your email and we will send an invite when a spot opens.' },
+  { q: 'When can I use it?', a: 'Now, on iPhone: anyone can join the beta through TestFlight. On Android we are inviting testers in small groups through Google Play testing; request access with your email and we will send an invite when a spot opens.' },
   { q: 'What can it recognize?', a: `Paintings, drawings, prints, sculpture and museum objects. About ${STATS.recognizable} works can be matched from a photo today, out of ${STATS.works} works in the catalogue, and the number grows every week.` },
   { q: 'What happens if it doesn’t recognize something?', a: 'You see the closest possibilities with a match score, and you can add the work yourself. We review every submission before it goes into the catalogue.' },
   { q: 'Do I need to be in a museum?', a: 'No. It works on a painting in a gallery, a print in a book, or a picture on a screen.' },
@@ -37,7 +37,7 @@ const appLd = {
   <section class="hero ground">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="pill"><span class="dot"></span> Inviting testers now · iPhone &amp; Android</p>
+        <p class="pill"><span class="dot"></span> Open beta on iPhone · Android invites</p>
         <h1 class="display">Point your camera at any artwork. <em>Know it in seconds.</em></h1>
         <p class="lede">
           Opus recognizes paintings, sculpture and objects from a single photo, then tells you who made them,
@@ -172,7 +172,7 @@ const appLd = {
   <section class="final wrap">
     <div class="final-box ground">
       <h2 class="display">Be one of the first to try it.</h2>
-      <p>Tell us your email and your phone. We let testers in every week.</p>
+      <p>Join on iPhone through TestFlight today. On Android, leave your email and we’ll send an invite.</p>
       <AccessForm placement="home-final" tone="dark" />
     </div>
   </section>

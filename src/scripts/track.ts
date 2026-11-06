@@ -6,7 +6,8 @@
 //   section_reach  {index, heading}           an article H2 entered the viewport
 //   cta_view       {placement}                a CTA was at least half on screen
 //   cta_click      {placement}                a CTA link was clicked
-//   access_submit  {placement, platform}      sent from access-form.ts
+//   access_submit  {placement, platform}      sent from access-form.ts (Android only)
+//   testflight_click {placement}              the iPhone TestFlight link, from access-form.ts
 //
 // With a PostHog key set in lib/site.ts they go to PostHog; without one
 // they only collect in window.__opus.events (handy while testing).

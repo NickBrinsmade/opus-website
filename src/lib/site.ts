@@ -16,6 +16,10 @@ export const SITE = {
   email: 'hello@opus-mobile.com',
 };
 
+// Public TestFlight link: iPhone testers join directly, no waitlist.
+// Android still goes through the request-access form (Play Console tester list).
+export const TESTFLIGHT_URL = 'https://testflight.apple.com/join/jTr2UAW2';
+
 // Publishable key: the same one the app ships with. Row-level security
 // decides what it can do. Never put a secret key in this public repo.
 export const SUPABASE_URL = 'https://vrkyrldnodmxqxppweim.supabase.co';

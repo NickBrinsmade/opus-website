@@ -1,6 +1,9 @@
 ---
 // One request-access form. `placement` names where on the page it sits, so
 // signups can be credited to a spot (hero, guide-inline, guide-end, ...).
+// Picking iPhone swaps the email field for the public TestFlight link;
+// only Android needs a waitlist.
+import { TESTFLIGHT_URL } from '../lib/site';
 interface Props { placement: string; tone?: 'light' | 'dark'; button?: string }
 const { placement, tone = 'light', button = 'Request access' } = Astro.props;
 const id = `f-${placement}`;
@@ -15,10 +18,12 @@ const id = `f-${placement}`;
       <label><input type="radio" name="platform" value="android" /><span>Android</span></label>
     </fieldset>
     <button class="btn btn-gilt" type="submit">{button}</button>
+    <a class="btn btn-gilt tf" href={TESTFLIGHT_URL} target="_blank" rel="noopener" data-testflight>Join on TestFlight</a>
   </div>
   <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off" /></label>
   <p class="status" data-status role="status" aria-live="polite"></p>
   <p class="fine">Free during testing. We only email you about your invite. <a href={`${import.meta.env.BASE_URL}privacy/`}>Privacy</a></p>
+  <p class="fine tf-fine">Free during testing. Install Apple’s free TestFlight app, then open the link on your iPhone.</p>
 </form>
 <style>
   .access { width: 100%; max-width: 620px; }
@@ -49,5 +54,9 @@ const id = `f-${placement}`;
   .fine { margin: 10px 4px 0; font-size: 13px; color: var(--ink-3); }
   .dark .fine { color: rgba(255, 255, 255, 0.6); }
   .done .row, .done .fine { display: none; }
+  .tf, .tf-fine { display: none; }
+  .ios input[type=email], .ios button[type=submit], .ios .fine:not(.tf-fine), .ios .status { display: none; }
+  .ios .tf { display: inline-flex; }
+  .ios .tf-fine { display: block; }
   @media (max-width: 520px) { .seg { flex: 1 1 auto; } .seg label { flex: 1; text-align: center; } .row .btn { flex: 1 1 100%; } }
 </style>

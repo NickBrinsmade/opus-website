@@ -2,18 +2,18 @@
 import Base from '../layouts/Base.astro';
 import AccessForm from '../components/AccessForm.astro';
 import Phone from '../components/Phone.astro';
-import { STATS } from '../lib/site';
+import { STATS, TESTFLIGHT_URL } from '../lib/site';
 ---
-<Base title="Request early access" description="Opus is in testing on iPhone and Android. Leave your email and we’ll send you an invite when a spot opens.">
+<Base title="Get the Opus beta" description="Opus is in testing on iPhone and Android. Join on iPhone through TestFlight today, or leave your email for an Android invite.">
   <section class="access-page ground">
     <div class="wrap grid">
       <div>
         <p class="eyebrow">Early access</p>
-        <h1 class="display">Get an invite to the Opus beta.</h1>
-        <p class="lede">We’re letting testers in every week. Tell us your email and which phone you use, and we’ll send the right invite.</p>
+        <h1 class="display">Try the Opus beta.</h1>
+        <p class="lede">On iPhone you can join right now through TestFlight. On Android, leave your email and we’ll send you an invite. We’re letting Android testers in every week.</p>
         <AccessForm placement="access-page" tone="dark" />
         <ol class="what">
-          <li><strong>iPhone:</strong> you’ll get a TestFlight link. Install Apple’s free TestFlight app, tap the link, and Opus installs like any other app.</li>
+          <li><strong>iPhone:</strong> install Apple’s free TestFlight app, then <a href={TESTFLIGHT_URL} target="_blank" rel="noopener">open our TestFlight link</a> on your phone. Opus installs like any other app.</li>
           <li><strong>Android:</strong> you’ll get a Google Play testing link. Opt in with the Google account you use on your phone, then install Opus from the Play Store.</li>
           <li><strong>In return:</strong> use it at a museum or two, and tell us what broke. That’s it.</li>
         </ol>
@@ -36,6 +36,7 @@ import { STATS } from '../lib/site';
   .lede { color: #ead9c7; font-size: 19px; margin: 0 0 28px; max-width: 32em; }
   .what { margin: 36px 0 0; padding-left: 20px; color: #e3d3c2; display: grid; gap: 12px; max-width: 36em; }
   .what strong { color: #fff; }
+  .what a { color: #f1d38c; }
   .phones { position: relative; height: 540px; }
   :global(.a1) { position: absolute; left: 0; top: 30px; transform: rotate(-6deg); }
   :global(.a2) { position: absolute; right: 0; top: 0; transform: rotate(5deg); }
