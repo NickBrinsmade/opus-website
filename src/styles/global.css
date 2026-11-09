@@ -1,6 +1,8 @@
-/* Brand tokens come from the app (project brand identity, 2026-10-29):
-   oxblood ground #7A2A35 → #3A1219, gilt #E2BE62, splash #521B24,
-   paint dabs #E5483B #F2A13A #3FA45B #3E6FD8, wordmark Bodoni Moda 500. */
+/* Brand tokens come from the app (project brand identity, 2026-10-29;
+   icon + wordmark updated 2026-11-08): oxblood ground #7A2A35 → #3A1219,
+   gilt #E2BE62, splash #521B24, paint dabs #E5483B #F2A13A #3FA45B #3E6FD8.
+   Icon: the Judging curator; wordmark: lowercase "opus" in Baloo 2 800
+   (gilt on the splash). Bodoni Moda stays the display face for headings. */
 
 :root {
   --oxblood: #7a2a35;
@@ -24,6 +26,7 @@
   --focus: #3e6fd8;
 
   --display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --wordmark: 'Baloo 2', -apple-system, BlinkMacSystemFont, sans-serif;
   --serif: 'Source Serif 4 Variable', Georgia, serif;
   --sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
