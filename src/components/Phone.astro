@@ -4,7 +4,7 @@ interface Props { screen: string; alt: string; width?: number; eager?: boolean; 
 const { screen, alt, width = 280, eager = false, class: cls } = Astro.props;
 ---
 <figure class:list={['phone', cls]} style={`--w:${width}px`}>
-  <img src={url(`/img/screens/${screen}.webp?v=2`)} width="786" height="1707" alt={alt}
+  <img src={url(`/img/screens/${screen}.webp?v=3`)} width="786" height="1707" alt={alt}
        loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding="async" />
 </figure>
 <style>
