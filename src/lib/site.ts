@@ -10,7 +10,7 @@ export const STATS = {
 
 export const SITE = {
   name: 'Opus',
-  tagline: 'Point your camera at a work of art. Know it in seconds.',
+  tagline: 'Point your camera at a work of art. Learn more in seconds.',
   description:
     'Opus recognizes paintings, sculpture and objects from a photo, then shows you the story behind them, where to see more, and what other visitors thought.',
   email: 'hello@opus-mobile.com',
