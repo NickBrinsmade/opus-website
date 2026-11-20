@@ -5,7 +5,7 @@
     { "city": "Paris", "country": "France", "museums": [
       { "name": "Musée du Louvre", "url": "https://www.louvre.fr/en", "note": "More Leonardo paintings than anywhere else.", "works": [
         { "title": "Virgin of the Rocks", "year": "1483–86", "note": "The first version; the second is in London." },
-        { "title": "La Belle Ferronnière", "year": "c. 1490–97" },
+        { "title": "La Belle Ferronnière", "year": "c. 1490–97", "note": "Not on display as of November 2026, according to the Louvre’s collection database." },
         { "title": "Mona Lisa", "year": "c. 1503–19" },
         { "title": "The Virgin and Child with Saint Anne", "year": "c. 1503–19" },
         { "title": "Saint John the Baptist", "year": "c. 1513–16" } ] } ] },
